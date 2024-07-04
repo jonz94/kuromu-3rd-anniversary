@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { CreatePost } from '~/app/_components/create-post'
@@ -39,7 +40,13 @@ export default async function Home() {
 
           <div className="flex flex-col items-center justify-center gap-4">
             <p className="text-center text-2xl text-white">
-              {session && <span>Logged in as {session.user?.name}</span>}
+              {session && (
+                <span>
+                  Logged in as{' '}
+                  <Image src={session.user?.image ?? ''} className="size-16" width={800} height={800} alt="" />{' '}
+                  {session.user?.name}
+                </span>
+              )}
             </p>
             <Link
               href={session ? '/api/auth/signout' : '/api/auth/signin'}
