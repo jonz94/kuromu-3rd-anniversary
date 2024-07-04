@@ -1,12 +1,12 @@
-import { defineConfig } from "drizzle-kit";
+import { defineConfig } from 'drizzle-kit'
 
-import { env } from "~/env";
+import { env } from '~/env'
 
 export default defineConfig({
-  schema: "./src/server/db/schema.ts",
-  dialect: "sqlite",
+  schema: './src/server/db/schema.ts',
+  dialect: 'sqlite',
   dbCredentials: {
     url: env.DATABASE_URL,
   },
-  tablesFilter: ["kuromu-t3_*"],
-});
+  tablesFilter: ['kuromu-t3_*'],
+})

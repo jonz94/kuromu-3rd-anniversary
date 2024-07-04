@@ -1,12 +1,12 @@
-import Link from "next/link";
+import Link from 'next/link'
 
-import { CreatePost } from "~/app/_components/create-post";
-import { getServerAuthSession } from "~/server/auth";
-import { api } from "~/trpc/server";
+import { CreatePost } from '~/app/_components/create-post'
+import { getServerAuthSession } from '~/server/auth'
+import { api } from '~/trpc/server'
 
 export default async function Home() {
-  const hello = await api.post.hello({ text: "from tRPC" });
-  const session = await getServerAuthSession();
+  const hello = await api.post.hello({ text: 'from tRPC' })
+  const session = await getServerAuthSession()
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
@@ -22,8 +22,7 @@ export default async function Home() {
           >
             <h3 className="text-2xl font-bold">First Steps →</h3>
             <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
+              Just the basics - Everything you need to know to set up your database and authentication.
             </div>
           </Link>
           <Link
@@ -32,26 +31,21 @@ export default async function Home() {
             target="_blank"
           >
             <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
+            <div className="text-lg">Learn more about Create T3 App, the libraries it uses, and how to deploy it.</div>
           </Link>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <p className="text-2xl text-white">
-            {hello ? hello.greeting : "Loading tRPC query..."}
-          </p>
+          <p className="text-2xl text-white">{hello ? hello.greeting : 'Loading tRPC query...'}</p>
 
           <div className="flex flex-col items-center justify-center gap-4">
             <p className="text-center text-2xl text-white">
               {session && <span>Logged in as {session.user?.name}</span>}
             </p>
             <Link
-              href={session ? "/api/auth/signout" : "/api/auth/signin"}
+              href={session ? '/api/auth/signout' : '/api/auth/signin'}
               className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
             >
-              {session ? "Sign out" : "Sign in"}
+              {session ? 'Sign out' : 'Sign in'}
             </Link>
           </div>
         </div>
@@ -59,14 +53,14 @@ export default async function Home() {
         <CrudShowcase />
       </div>
     </main>
-  );
+  )
 }
 
 async function CrudShowcase() {
-  const session = await getServerAuthSession();
-  if (!session?.user) return null;
+  const session = await getServerAuthSession()
+  if (!session?.user) return null
 
-  const latestPost = await api.post.getLatest();
+  const latestPost = await api.post.getLatest()
 
   return (
     <div className="w-full max-w-xs">
@@ -78,5 +72,5 @@ async function CrudShowcase() {
 
       <CreatePost />
     </div>
-  );
+  )
 }
