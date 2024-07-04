@@ -1,4 +1,19 @@
 /** @type {import('prettier').Config} */
-const config = {};
+const config = {
+  printWidth: 120,
+  semi: false,
+  singleQuote: true,
 
-export default config;
+  plugins: ['prettier-plugin-organize-imports', 'prettier-plugin-packagejson'],
+
+  overrides: [
+    {
+      files: 'tsconfig.json',
+      options: {
+        parser: 'jsonc',
+      },
+    },
+  ],
+}
+
+export default config
