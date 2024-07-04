@@ -80,7 +80,6 @@ export const authOptions: NextAuthOptions = {
 
       token: {
         async request(context) {
-          const now = Date.now()
           const response = await fetch('https://oauth2.googleapis.com/token', {
             method: 'POST',
             body: new URLSearchParams({
@@ -88,7 +87,7 @@ export const authOptions: NextAuthOptions = {
               redirect_uri: context.provider.callbackUrl,
               client_id: context.provider.clientId ?? '',
               client_secret: context.provider.clientSecret ?? '',
-              scope: 'https://www.googleapis.com/auth/drive.metadata.readonly',
+              scope: 'https://www.googleapis.com/auth/youtube.readonly',
               grant_type: 'authorization_code',
             }),
           }).then((response) => response.json())
@@ -96,7 +95,7 @@ export const authOptions: NextAuthOptions = {
           return {
             tokens: {
               access_token: response.access_token,
-              expires_at: now + response.expires_in * 1000,
+              expires_at: Math.floor(Date.now() / 1000) + response.expires_in,
               refresh_token: response.refresh_token,
               token_type: response.token_type,
               scope: response.scope,
