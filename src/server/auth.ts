@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import {
   getServerSession,
@@ -63,15 +65,92 @@ export const authOptions: NextAuthOptions = {
       clientId: env.DISCORD_CLIENT_ID,
       clientSecret: env.DISCORD_CLIENT_SECRET,
     }),
-    /**
-     * ...add more providers here.
-     *
-     * Most other providers require a bit more work than the Discord provider. For example, the
-     * GitHub provider requires you to add the `refresh_token_expires_in` field to the Account
-     * model. Refer to the NextAuth.js docs for the provider you want to use. Example:
-     *
-     * @see https://next-auth.js.org/providers/github
-     */
+
+    // YouTube OAuth for YouTube Data API v3
+    {
+      id: "youtube",
+      name: "YouTube",
+      type: "oauth",
+      version: "2.0",
+
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
+
+      authorization: {
+        url: "https://accounts.google.com/o/oauth2/v2/auth",
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+          client_id: env.GOOGLE_CLIENT_ID,
+          scope: "https://www.googleapis.com/auth/youtube.readonly",
+        },
+      },
+
+      token: {
+        async request(context) {
+          const now = Date.now();
+          const response = await fetch("https://oauth2.googleapis.com/token", {
+            method: "POST",
+            body: new URLSearchParams({
+              code: context.params.code ?? "",
+              redirect_uri: context.provider.callbackUrl,
+              client_id: context.provider.clientId ?? "",
+              client_secret: context.provider.clientSecret ?? "",
+              scope: "https://www.googleapis.com/auth/drive.metadata.readonly",
+              grant_type: "authorization_code",
+            }),
+          }).then((response) => response.json());
+
+          return {
+            tokens: {
+              access_token: response.access_token,
+              expires_at: now + response.expires_in * 1000,
+              refresh_token: response.refresh_token,
+              token_type: response.token_type,
+              scope: response.scope,
+            },
+          };
+        },
+      },
+
+      userinfo: {
+        async request(context) {
+          const accessToken = context.tokens.access_token;
+
+          if (accessToken === undefined) {
+            throw new Error("[request uesrinfo] access_token is empty");
+          }
+
+          const result = await fetch(
+            "https://www.googleapis.com/youtube/v3/channels?part=id,snippet&maxResults=1&mine=true",
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            },
+          ).then((response) => response.json());
+
+          const youtubeChannelId = result.items[0]?.id ?? "";
+
+          return {
+            sub: youtubeChannelId,
+            name: result.items[0]?.snippet?.title,
+            email: `${youtubeChannelId}@no-reply.youtube.com`,
+            image: result.items[0]?.snippet?.thumbnails?.high?.url,
+          };
+        },
+      },
+
+      profile(profile) {
+        return {
+          id: profile.sub,
+          name: profile.name,
+          email: `${profile.sub}@no-reply.youtube.com`,
+          image: profile.image,
+        };
+      },
+    },
   ],
 };
 
