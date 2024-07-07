@@ -3,7 +3,6 @@
 import { DrizzleAdapter } from '@auth/drizzle-adapter'
 import { getServerSession, type DefaultSession, type NextAuthOptions } from 'next-auth'
 import { type Adapter } from 'next-auth/adapters'
-import DiscordProvider from 'next-auth/providers/discord'
 
 import { env } from '~/env'
 import { db } from '~/server/db'
@@ -52,17 +51,18 @@ export const authOptions: NextAuthOptions = {
     verificationTokensTable: verificationTokens,
   }) as Adapter,
   providers: [
-    DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
-    }),
-
     // YouTube OAuth for YouTube Data API v3
     {
       id: 'youtube',
       name: 'YouTube',
       type: 'oauth',
       version: '2.0',
+
+      style: {
+        logo: '/google.svg',
+        bg: '#ececec',
+        text: '#000',
+      },
 
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
