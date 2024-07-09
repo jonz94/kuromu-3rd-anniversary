@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import Link from 'next/link'
-import { fetchChannelData } from '~/query'
+import { fetchChannelsData } from '~/query'
 
 export function ChannelList() {
   const {
@@ -12,7 +12,7 @@ export function ChannelList() {
     isLoading,
   } = useQuery({
     queryKey: ['channels'],
-    queryFn: fetchChannelData,
+    queryFn: fetchChannelsData,
   })
 
   if (isLoading) return <div>資料載入中...</div>
