@@ -38,7 +38,7 @@ export function MessageList(props: { channelId: string }) {
       <tbody>
         {allRawTextMessages?.map((textMessage, index) => (
           <tr key={index}>
-            <td className="text-2xl">{new Date(textMessage.timestamp).toLocaleString()}</td>
+            <td className="text-2xl">{new Date(textMessage.timestamp).toLocaleString('zh-Hant-TW')}</td>
             <td className="text-xl">
               <a
                 href={`https://www.youtube.com/watch?v=${textMessage.videoId}&t=${Math.floor(Number(textMessage.videoOffsetTimeMsec) / 1000)}s`}
