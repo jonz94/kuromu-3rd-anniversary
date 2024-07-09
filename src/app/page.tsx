@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-
-import { Text } from '~/app/_components/text'
+import { MessageList } from '~/app/_components/MessageList'
 import { getServerAuthSession } from '~/server/auth'
 import { api } from '~/trpc/server'
 
@@ -50,41 +49,10 @@ async function AllTextMessages() {
   const session = await getServerAuthSession()
   if (!session?.user) return null
 
-  const allRawTextMessages = await api.rawTextMessage.all()
+  const account = await api.account.getAccount()
+  const channelId = account?.providerAccountId
 
-  return allRawTextMessages && allRawTextMessages.length > 0 ? (
-    <table className="w-full border-separate border-spacing-2">
-      <thead className="text-left text-3xl font-bold">
-        <tr>
-          <th>留言時間</th>
-          <th>原直播網址 (含時間軸)</th>
-          <th>留言內容</th>
-        </tr>
-      </thead>
+  if (!channelId) return <h1>此帳號沒有任何紀錄</h1>
 
-      <tbody>
-        {allRawTextMessages && allRawTextMessages.length > 0
-          ? allRawTextMessages.map((textMessage, index) => (
-              <tr key={index}>
-                <td className="text-2xl">{new Date(textMessage.timestamp).toLocaleString()}</td>
-                <td className="text-xl">
-                  <a
-                    href={`https://www.youtube.com/watch?v=${textMessage.videoId}&t=${Math.floor(Number(textMessage.videoOffsetTimeMsec) / 1000)}s`}
-                  >
-                    {`https://www.youtube.com/watch?v=${textMessage.videoId}&t=${Math.floor(Number(textMessage.videoOffsetTimeMsec) / 1000)}s`}
-                  </a>
-                </td>
-                <td className="flex col-span-2 text-2xl items-center">
-                  <Text text={textMessage.jsonMessage}></Text>
-                </td>
-              </tr>
-            ))
-          : null}
-      </tbody>
-    </table>
-  ) : (
-    <div className="text-2xl">
-      <p>查無任何紀錄</p>
-    </div>
-  )
+  return <MessageList channelId={channelId} />
 }
