@@ -1,5 +1,15 @@
 import { z } from 'zod'
 
+const channelSchema = z
+  .object({
+    id: z.string(),
+    name: z.string(),
+    thumbnailUrl: z.string(),
+  })
+  .array()
+
+export type ChannelSchema = z.infer<typeof channelSchema>
+
 const rawTextMessageSchema = z
   .object({
     id: z.string(),
@@ -13,7 +23,7 @@ const rawTextMessageSchema = z
 
 export type RawTextMessageSchema = z.infer<typeof rawTextMessageSchema>
 
-export const fetchMessage = (channelId: string) => {
+export const fetchMessageData = (channelId: string) => {
   return async (): Promise<RawTextMessageSchema> => {
     const response = await fetch(`/data/${channelId}/raw-text-messages.json`)
     const content = await response.text()
@@ -21,4 +31,12 @@ export const fetchMessage = (channelId: string) => {
 
     return parsedMessage
   }
+}
+
+export const fetchChannelData = async (): Promise<ChannelSchema> => {
+  const response = await fetch(`/data/channels.json`)
+  const content = await response.text()
+  const parsedChannelData = await channelSchema.parseAsync(JSON.parse(content))
+
+  return parsedChannelData
 }

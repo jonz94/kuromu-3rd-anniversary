@@ -11,6 +11,9 @@ const config = {
       {
         hostname: 'yt3.ggpht.com',
       },
+      {
+        hostname: 'yt3.googleusercontent.com',
+      },
     ],
   },
 }

@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query'
 import { Text } from '~/app/_components/Text'
-import { fetchMessage } from '~/query/message'
+import { fetchMessageData } from '~/query'
 
 export function MessageList(props: { channelId: string }) {
   const {
@@ -11,7 +11,7 @@ export function MessageList(props: { channelId: string }) {
     isLoading,
   } = useQuery({
     queryKey: ['messages', props.channelId],
-    queryFn: fetchMessage(props.channelId),
+    queryFn: fetchMessageData(props.channelId),
   })
 
   if (isLoading) return <div>資料載入中...</div>
