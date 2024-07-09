@@ -42,6 +42,8 @@ export function MessageList(props: { channelId: string }) {
             <td className="text-xl">
               <a
                 href={`https://www.youtube.com/watch?v=${textMessage.videoId}&t=${Math.floor(Number(textMessage.videoOffsetTimeMsec) / 1000)}s`}
+                target="_blank"
+                className="underline"
               >
                 {`https://www.youtube.com/watch?v=${textMessage.videoId}&t=${Math.floor(Number(textMessage.videoOffsetTimeMsec) / 1000)}s`}
               </a>
