@@ -27,18 +27,16 @@ export type RawTextMessageSchema = z.infer<typeof rawTextMessageSchema>
 
 export const fetchMessageData = (channelId: string) => {
   return async (): Promise<RawTextMessageSchema> => {
-    const response = await fetch(`/data/${channelId}/raw-text-messages.json`)
-    const content = await response.text()
-    const parsedMessage = await rawTextMessageSchema.parseAsync(JSON.parse(content))
+    const content = await fetch(`/data/${channelId}/raw-text-messages.json`).then((response) => response.text())
+    const parsedData = await rawTextMessageSchema.parseAsync(JSON.parse(content))
 
-    return parsedMessage
+    return parsedData
   }
 }
 
 export const fetchChannelData = (channelId: string) => {
   return async (): Promise<ChannelSchema> => {
-    const response = await fetch(`/data/${channelId}/channel.json`)
-    const content = await response.text()
+    const content = await fetch(`/data/${channelId}/channel.json`).then((response) => response.text())
     const parsedData = await channelSchema.parseAsync(JSON.parse(content))
 
     return parsedData
@@ -46,8 +44,7 @@ export const fetchChannelData = (channelId: string) => {
 }
 
 export const fetchChannelsData = async (): Promise<ChannelsSchema> => {
-  const response = await fetch(`/data/channels.json`)
-  const content = await response.text()
+  const content = await fetch(`/data/channels.json`).then((response) => response.text())
   const parsedData = await channelsSchema.parseAsync(JSON.parse(content))
 
   return parsedData
