@@ -1,5 +1,5 @@
 import { relations, sql } from 'drizzle-orm'
-import { blob, index, int, primaryKey, sqliteTableCreator, text } from 'drizzle-orm/sqlite-core'
+import { index, int, primaryKey, sqliteTableCreator, text } from 'drizzle-orm/sqlite-core'
 import { type AdapterAccount } from 'next-auth/adapters'
 
 /**
@@ -84,84 +84,4 @@ export const verificationTokens = createTable(
   (vt) => ({
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   }),
-)
-
-export const rawTextMessages = createTable('raw_text_message', {
-  id: text('id').notNull().primaryKey(),
-  videoId: text('video_id').notNull(),
-  userId: text('user_id').notNull(),
-  timestamp: int('timestamp').notNull(),
-  videoOffsetTimeMsec: text('video_offset_time_msec').notNull(),
-
-  jsonMessage: blob('json_message').notNull(),
-})
-
-export const rawMembershipItems = createTable('raw_membership_item', {
-  id: text('id').notNull().primaryKey(),
-  videoId: text('video_id').notNull(),
-  userId: text('user_id').notNull(),
-  timestamp: int('timestamp').notNull(),
-  videoOffsetTimeMsec: text('video_offset_time_msec').notNull(),
-
-  headerPrimaryText: text('header_primary_text').notNull(),
-  headerSubtext: text('header_subtext').notNull(),
-  jsonMessage: blob('json_message').notNull(),
-})
-
-export const rawPaidMessages = createTable('raw_paid_message', {
-  id: text('id').notNull().primaryKey(),
-  videoId: text('video_id').notNull(),
-  userId: text('user_id').notNull(),
-  timestamp: int('timestamp').notNull(),
-  videoOffsetTimeMsec: text('video_offset_time_msec').notNull(),
-
-  headerBackgroundColor: int('header_background_color').notNull(),
-  headerTextColor: int('header_text_color').notNull(),
-  bodyBackgroundColor: int('body_background_color').notNull(),
-  bodyTextColor: int('body_text_color').notNull(),
-
-  purchaseAmount: text('purchase_amount').notNull(),
-  jsonMessage: blob('json_message').notNull(),
-})
-
-export const rawPaidStickers = createTable('raw_paid_sticker', {
-  id: text('id').notNull().primaryKey(),
-  videoId: text('video_id').notNull(),
-  userId: text('user_id').notNull(),
-  timestamp: int('timestamp').notNull(),
-  videoOffsetTimeMsec: text('video_offset_time_msec').notNull(),
-
-  moneyChipBackgroundColor: int('money_chip_background_color').notNull(),
-  moneyChipTextColor: int('money_chip_text_color').notNull(),
-  backgroundColor: int('background_color').notNull(),
-  authorNameTextColor: int('author_name_text_color').notNull(),
-
-  purchaseAmount: text('purchase_amount').notNull(),
-  jsonSticker: blob('json_sticker').notNull(),
-})
-
-export const rawLiveChatSponsorshipsGiftPurchaseAnnouncements = createTable(
-  'raw_live_chat_sponsorships_gift_purchase_announcement',
-  {
-    id: text('id').notNull().primaryKey(),
-    videoId: text('video_id').notNull(),
-    userId: text('user_id').notNull(),
-    timestampUsec: text('timestamp_usec').notNull(),
-    videoOffsetTimeMsec: text('video_offset_time_msec').notNull(),
-
-    headerPrimaryText: text('header_primary_text').notNull(),
-  },
-)
-
-export const rawLiveChatSponsorshipsGiftRedemptionAnnlungements = createTable(
-  'raw_live_chat_sponsorships_gift_redemption_announcement',
-  {
-    id: text('id').notNull().primaryKey(),
-    videoId: text('video_id').notNull(),
-    userId: text('user_id').notNull(),
-    timestampUsec: text('timestamp_usec').notNull(),
-    videoOffsetTimeMsec: text('video_offset_time_msec').notNull(),
-
-    jsonMessage: text('json_message').notNull(),
-  },
 )
