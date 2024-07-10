@@ -48,7 +48,7 @@ export function ChannelList() {
             <td className="flex text-2xl items-center space-x-4">
               <span>
                 <Image
-                  src={channel.thumbnailUrl}
+                  src={`/data/${channel.id}/avatar.jpg`}
                   width={160}
                   height={160}
                   className="size-16 rounded-full"

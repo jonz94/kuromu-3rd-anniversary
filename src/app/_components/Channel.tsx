@@ -31,7 +31,7 @@ export function Channel(props: { channelId: string }) {
     <div className="flex gap-4 items-center">
       <span>
         <Image
-          src={channel.thumbnailUrl}
+          src={`/data/${channel.id}/avatar.jpg`}
           className="size-16 rounded-full"
           width={160}
           height={160}

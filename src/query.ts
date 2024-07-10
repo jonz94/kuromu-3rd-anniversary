@@ -3,7 +3,6 @@ import { z } from 'zod'
 const channelSchema = z.object({
   id: z.string(),
   name: z.string(),
-  thumbnailUrl: z.string(),
 })
 
 export type ChannelSchema = z.infer<typeof channelSchema>
