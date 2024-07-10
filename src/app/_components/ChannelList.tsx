@@ -1,7 +1,6 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import Image from 'next/image'
 import Link from 'next/link'
 import { fetchChannelsData } from '~/query'
 
@@ -47,7 +46,8 @@ export function ChannelList() {
 
             <td className="flex text-2xl items-center space-x-4">
               <span>
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={`/data/${channel.id}/avatar.jpg`}
                   width={160}
                   height={160}

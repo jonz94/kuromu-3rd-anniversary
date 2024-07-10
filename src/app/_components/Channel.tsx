@@ -1,7 +1,6 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import Image from 'next/image'
 import { fetchChannelData } from '~/query'
 
 export function Channel(props: { channelId: string }) {
@@ -30,7 +29,8 @@ export function Channel(props: { channelId: string }) {
   return (
     <div className="flex gap-4 items-center">
       <span>
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={`/data/${channel.id}/avatar.jpg`}
           className="size-16 rounded-full"
           width={160}
