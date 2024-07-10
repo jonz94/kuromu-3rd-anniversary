@@ -1,4 +1,5 @@
 import { Channel } from '~/app/_components/Channel'
+import { LastUpdatedAt } from '~/app/_components/LastUpdatedAt'
 import { MessageList } from '~/app/_components/MessageList'
 
 export default function Page({ params }: { params: { id: string } }) {
@@ -7,7 +8,7 @@ export default function Page({ params }: { params: { id: string } }) {
       <div className="flex flex-col items-center justify-center gap-12 px-4 py-16 ">
         <Channel channelId={params.id} />
 
-        <p className="text-xl">資料更新於 2024 年 07 月 06 日</p>
+        <LastUpdatedAt />
 
         <MessageList channelId={params.id} />
       </div>
