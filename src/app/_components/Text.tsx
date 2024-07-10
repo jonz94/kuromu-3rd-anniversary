@@ -47,22 +47,18 @@ function parseText(text?: string) {
     <>
       {parsedText.runs.map((run, index) => {
         if (run.emoji) {
-          if (run.emoji.is_custom) {
-            const maxImage = findMaxImage(run.emoji.image)
+          const maxImage = findMaxImage(run.emoji.image)
 
-            return maxImage ? (
-              <Image
-                key={index}
-                src={maxImage.url}
-                height={32}
-                width={32}
-                className="size-[32px] mx-0.5"
-                alt="emoji"
-              ></Image>
-            ) : null
-          }
-
-          return 'not_custom_emoji'
+          return maxImage ? (
+            <Image
+              key={index}
+              src={maxImage.url}
+              height={32}
+              width={32}
+              className="size-[32px] mx-0.5"
+              alt="emoji"
+            ></Image>
+          ) : null
         }
 
         return run.text
