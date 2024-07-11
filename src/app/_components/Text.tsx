@@ -1,7 +1,5 @@
 'use client'
 
-import Image from 'next/image'
-
 interface Image {
   url: string
   width: number
@@ -50,14 +48,15 @@ function parseText(text?: string) {
           const maxImage = findMaxImage(run.emoji.image)
 
           return maxImage ? (
-            <Image
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
               key={index}
               src={maxImage.url}
               height={32}
               width={32}
-              className="size-[32px] mx-0.5"
+              className="size-[32px] mx-0.5 inline align-middle"
               alt="emoji"
-            ></Image>
+            />
           ) : null
         }
 

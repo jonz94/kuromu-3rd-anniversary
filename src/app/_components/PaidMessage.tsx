@@ -1,6 +1,5 @@
 'use client'
 
-import type Image from 'next/image'
 import { type RawPaidMessageSchema } from '~/query'
 import { convertARGB2rgbString } from '~/utils'
 
