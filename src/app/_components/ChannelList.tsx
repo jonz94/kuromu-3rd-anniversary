@@ -45,8 +45,9 @@ export function ChannelList() {
             </td>
 
             <td className="flex text-2xl items-center space-x-4">
+              {/* TODO: show avatar when hover */}
+              {/*
               <span>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`/data/${channel.id}/avatar.jpg`}
                   width={160}
@@ -55,6 +56,7 @@ export function ChannelList() {
                   alt={`${channel.name} 的頻道頭像`}
                 />
               </span>
+              */}
               <span className="font-bold">{channel.name}</span>
             </td>
 
