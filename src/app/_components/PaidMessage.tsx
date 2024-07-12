@@ -45,8 +45,6 @@ function parseText(text?: string) {
   const parsedText = JSON.parse(text) as TextJsonMessage
 
   if (!parsedText.runs) {
-    console.log(parsedText)
-
     return null
   }
 
@@ -79,10 +77,6 @@ export function PaidMessage({ paidMessage }: { paidMessage: RawPaidMessageSchema
   if (paidMessage.type !== 'PaidMessage') return null
 
   const text = parseText(paidMessage.jsonMessage)
-
-  const bg = convertARGB2rgbString(paidMessage.bodyTextColor)
-
-  console.log({ bg })
 
   return (
     <div
