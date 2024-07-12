@@ -1,9 +1,14 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
+import { MembershipItem } from '~/app/_components/MembershipItem'
 import { PaidMessage } from '~/app/_components/PaidMessage'
 import { Text } from '~/app/_components/Text'
-import { fetchMessageData, type RawPaidMessageSchemaWithMessageType } from '~/query'
+import {
+  fetchMessageData,
+  type RawMembershipItemSchemaWithMessageType,
+  type RawPaidMessageSchemaWithMessageType,
+} from '~/query'
 
 export function MessageList(props: { channelId: string }) {
   const {
@@ -54,6 +59,9 @@ export function MessageList(props: { channelId: string }) {
                 {message.type === 'TextMessage' ? <Text text={message.jsonMessage}></Text> : null}
                 {message.type === 'PaidMessage' ? (
                   <PaidMessage paidMessage={message as RawPaidMessageSchemaWithMessageType}></PaidMessage>
+                ) : null}
+                {message.type === 'MembershipItem' ? (
+                  <MembershipItem membershipItem={message as RawMembershipItemSchemaWithMessageType}></MembershipItem>
                 ) : null}
               </td>
             </tr>

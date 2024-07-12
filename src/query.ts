@@ -20,7 +20,7 @@ const rawTextMessageSchema = z.object({
   jsonMessage: z.string(),
 })
 
-export type MessageType = 'TextMessage' | 'PaidMessage'
+export type MessageType = 'TextMessage' | 'PaidMessage' | 'MembershipItem'
 
 export type RawTextMessageSchema = z.infer<typeof rawTextMessageSchema>
 export type RawTextMessageSchemaWithMessageType = RawTextMessageSchema & { type: MessageType }
@@ -50,20 +50,48 @@ const rawPaidMessageListSchema = rawPaidMessageSchema.array()
 
 export type RawPaidMessageListSchema = z.infer<typeof rawPaidMessageListSchema>
 
+const rawMembershipItemSchema = z.object({
+  id: z.string(),
+  userId: z.string(),
+  videoId: z.string(),
+  videoOffsetTimeMsec: z.string(),
+  timestamp: z.number(),
+  headerPrimaryText: z.string(),
+  headerSubtext: z.string(),
+  jsonMessage: z.string(),
+})
+
+export type RawMembershipItemSchema = z.infer<typeof rawMembershipItemSchema>
+export type RawMembershipItemSchemaWithMessageType = RawMembershipItemSchema & { type: MessageType }
+
+const rawMembershipItemListSchema = rawMembershipItemSchema.array()
+
+export type RawMembershipItemListSchema = z.infer<typeof rawMembershipItemListSchema>
+
 export const fetchMessageData = (channelId: string) => {
   return async () => {
-    const [allRawTextMessages, allRawPaidMessages] = await Promise.all([
+    const [allRawTextMessages, allRawPaidMessages, allRawMembershipItems] = await Promise.all([
       fetch(`/data/${channelId}/raw-text-messages.json`)
         .then((response) => response.text())
         .then((content) => rawTextMessageListSchema.parseAsync(JSON.parse(content))),
+
       fetch(`/data/${channelId}/raw-paid-messages.json`)
         .then((response) => response.text())
         .then((content) => rawPaidMessageListSchema.parseAsync(JSON.parse(content))),
+
+      fetch(`/data/${channelId}/raw-membership-items.json`)
+        .then((response) => response.text())
+        .then((content) => rawMembershipItemListSchema.parseAsync(JSON.parse(content))),
     ])
 
-    const allMessages: (RawPaidMessageSchemaWithMessageType | RawTextMessageSchemaWithMessageType)[] = [
+    const allMessages: (
+      | RawPaidMessageSchemaWithMessageType
+      | RawTextMessageSchemaWithMessageType
+      | RawMembershipItemSchemaWithMessageType
+    )[] = [
       ...allRawTextMessages.map((message) => ({ ...message, type: 'TextMessage' as MessageType })),
       ...allRawPaidMessages.map((message) => ({ ...message, type: 'PaidMessage' as MessageType })),
+      ...allRawMembershipItems.map((message) => ({ ...message, type: 'MembershipItem' as MessageType })),
     ]
 
     return allMessages.toSorted((a, b) => new Date(a.timestamp).valueOf() - new Date(b.timestamp).valueOf())
