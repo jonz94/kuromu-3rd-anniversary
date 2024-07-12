@@ -5,17 +5,6 @@
 await import('./src/env.js')
 
 /** @type {import("next").NextConfig} */
-const config = {
-  images: {
-    remotePatterns: [
-      {
-        hostname: 'yt3.ggpht.com',
-      },
-      {
-        hostname: 'fonts.gstatic.com',
-      },
-    ],
-  },
-}
+const config = {}
 
 export default config
