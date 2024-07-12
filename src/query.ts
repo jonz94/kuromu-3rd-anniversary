@@ -20,7 +20,10 @@ const rawTextMessageSchema = z.object({
   jsonMessage: z.string(),
 })
 
+export type MessageType = 'TextMessage' | 'PaidMessage'
+
 export type RawTextMessageSchema = z.infer<typeof rawTextMessageSchema>
+export type RawTextMessageSchemaWithMessageType = RawTextMessageSchema & { type: MessageType }
 
 const rawTextMessageListSchema = rawTextMessageSchema.array()
 
@@ -41,6 +44,7 @@ const rawPaidMessageSchema = z.object({
 })
 
 export type RawPaidMessageSchema = z.infer<typeof rawPaidMessageSchema>
+export type RawPaidMessageSchemaWithMessageType = RawPaidMessageSchema & { type: MessageType }
 
 const rawPaidMessageListSchema = rawPaidMessageSchema.array()
 
@@ -48,7 +52,7 @@ export type RawPaidMessageListSchema = z.infer<typeof rawPaidMessageListSchema>
 
 export const fetchMessageData = (channelId: string) => {
   return async () => {
-    return await Promise.all([
+    const [allRawTextMessages, allRawPaidMessages] = await Promise.all([
       fetch(`/data/${channelId}/raw-text-messages.json`)
         .then((response) => response.text())
         .then((content) => rawTextMessageListSchema.parseAsync(JSON.parse(content))),
@@ -56,6 +60,13 @@ export const fetchMessageData = (channelId: string) => {
         .then((response) => response.text())
         .then((content) => rawPaidMessageListSchema.parseAsync(JSON.parse(content))),
     ])
+
+    const allMessages: (RawPaidMessageSchemaWithMessageType | RawTextMessageSchemaWithMessageType)[] = [
+      ...allRawTextMessages.map((message) => ({ ...message, type: 'TextMessage' as MessageType })),
+      ...allRawPaidMessages.map((message) => ({ ...message, type: 'PaidMessage' as MessageType })),
+    ]
+
+    return allMessages.toSorted((a, b) => new Date(a.timestamp).valueOf() - new Date(b.timestamp).valueOf())
   }
 }
 

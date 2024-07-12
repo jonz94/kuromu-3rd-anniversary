@@ -69,5 +69,5 @@ function parseText(text?: string) {
 export function Text(props: { text?: string }) {
   const text = parseText(props.text)
 
-  return <>{text}</>
+  return <div className="text-2xl">{text}</div>
 }

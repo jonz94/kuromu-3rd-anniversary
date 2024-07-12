@@ -1,6 +1,6 @@
 'use client'
 
-import { type RawPaidMessageSchema } from '~/query'
+import { type RawPaidMessageSchemaWithMessageType } from '~/query'
 import { convertARGB2rgbString } from '~/utils'
 
 interface Image {
@@ -75,7 +75,9 @@ function parseText(text?: string) {
   )
 }
 
-export function PaidMessage({ paidMessage }: { paidMessage: RawPaidMessageSchema }) {
+export function PaidMessage({ paidMessage }: { paidMessage: RawPaidMessageSchemaWithMessageType }) {
+  if (paidMessage.type !== 'PaidMessage') return null
+
   const text = parseText(paidMessage.jsonMessage)
 
   const bg = convertARGB2rgbString(paidMessage.bodyTextColor)
