@@ -61,7 +61,7 @@ export function ChannelList() {
             </td>
 
             <td>
-              <Link href={`/channel/${channel.id}`} className="underline" target="_blank">
+              <Link href={`/channel/${channel.id}`} className="underline" target="_blank" prefetch={false}>
                 查看留言
               </Link>
             </td>
