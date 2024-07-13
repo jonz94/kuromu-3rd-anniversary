@@ -3,6 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { MembershipItem } from '~/app/_components/MembershipItem'
 import { PaidMessage } from '~/app/_components/PaidMessage'
+import { PaidSticker } from '~/app/_components/PaidSticker'
 import { SponsorshipsGiftPurchaseAnnouncement } from '~/app/_components/SponsorshipsGiftPurchaseAnnouncement'
 import { SponsorshipsGiftRedemptionAnnouncement } from '~/app/_components/SponsorshipsGiftRedemptionAnnouncement'
 import { Text } from '~/app/_components/Text'
@@ -10,6 +11,7 @@ import {
   fetchMessageData,
   type RawMembershipItemSchemaWithMessageType,
   type RawPaidMessageSchemaWithMessageType,
+  type RawPaidStickerSchemaWithMessageType,
   type RawSponsorshipsGiftPurchaseAnnouncementSchemaWithMessageType,
   type RawSponsorshipsGiftRedemptionAnnouncementSchemaWithMessageType,
   type RawTextMessageSchemaWithMessageType,
@@ -66,6 +68,9 @@ export function MessageList(props: { channelId: string }) {
                 ) : null}
                 {message.type === 'PaidMessage' ? (
                   <PaidMessage paidMessage={message as RawPaidMessageSchemaWithMessageType}></PaidMessage>
+                ) : null}
+                {message.type === 'PaidSticker' ? (
+                  <PaidSticker paidSticker={message as RawPaidStickerSchemaWithMessageType}></PaidSticker>
                 ) : null}
                 {message.type === 'MembershipItem' ? (
                   <MembershipItem membershipItem={message as RawMembershipItemSchemaWithMessageType}></MembershipItem>

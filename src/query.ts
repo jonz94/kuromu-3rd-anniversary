@@ -23,6 +23,7 @@ const rawTextMessageSchema = z.object({
 export type MessageType =
   | 'TextMessage'
   | 'PaidMessage'
+  | 'PaidSticker'
   | 'MembershipItem'
   | 'SponsorshipsGiftPurchaseAnnouncement'
   | 'SponsorshipsGiftRedemptionAnnouncement'
@@ -54,6 +55,27 @@ export type RawPaidMessageSchemaWithMessageType = RawPaidMessageSchema & { type:
 const rawPaidMessageListSchema = rawPaidMessageSchema.array()
 
 export type RawPaidMessageListSchema = z.infer<typeof rawPaidMessageListSchema>
+
+const rawPaidStickerSchema = z.object({
+  id: z.string(),
+  userId: z.string(),
+  videoId: z.string(),
+  videoOffsetTimeMsec: z.string(),
+  timestamp: z.number(),
+  moneyChipBackgroundColor: z.number(),
+  moneyChipTextColor: z.number(),
+  backgroundColor: z.number(),
+  authorNameTextColor: z.number(),
+  purchaseAmount: z.string(),
+  jsonSticker: z.string(),
+})
+
+export type RawPaidStickerSchema = z.infer<typeof rawPaidStickerSchema>
+export type RawPaidStickerSchemaWithMessageType = RawPaidStickerSchema & { type: MessageType }
+
+const rawPaidStickerListSchema = rawPaidStickerSchema.array()
+
+export type RawPaidStickerListSchema = z.infer<typeof rawPaidStickerListSchema>
 
 const rawMembershipItemSchema = z.object({
   id: z.string(),
@@ -112,6 +134,7 @@ export const fetchMessageData = (channelId: string) => {
     const [
       allRawTextMessages,
       allRawPaidMessages,
+      allRawPaidStickers,
       allRawMembershipItems,
       allRawSponsorshipsGiftPurchaseAnnouncements,
       allRawSponsorshipsGiftRedemptionAnnouncements,
@@ -123,6 +146,10 @@ export const fetchMessageData = (channelId: string) => {
       fetch(`/data/${channelId}/raw-paid-messages.json`)
         .then((response) => response.text())
         .then((content) => rawPaidMessageListSchema.parseAsync(JSON.parse(content))),
+
+      fetch(`/data/${channelId}/raw-paid-stickers.json`)
+        .then((response) => response.text())
+        .then((content) => rawPaidStickerListSchema.parseAsync(JSON.parse(content))),
 
       fetch(`/data/${channelId}/raw-membership-items.json`)
         .then((response) => response.text())
@@ -138,14 +165,16 @@ export const fetchMessageData = (channelId: string) => {
     ])
 
     const allMessages: (
-      | RawPaidMessageSchemaWithMessageType
       | RawTextMessageSchemaWithMessageType
+      | RawPaidMessageSchemaWithMessageType
+      | RawPaidStickerSchemaWithMessageType
       | RawMembershipItemSchemaWithMessageType
       | RawSponsorshipsGiftPurchaseAnnouncementSchemaWithMessageType
       | RawSponsorshipsGiftRedemptionAnnouncementSchemaWithMessageType
     )[] = [
       ...allRawTextMessages.map((message) => ({ ...message, type: 'TextMessage' as MessageType })),
       ...allRawPaidMessages.map((message) => ({ ...message, type: 'PaidMessage' as MessageType })),
+      ...allRawPaidStickers.map((message) => ({ ...message, type: 'PaidSticker' as MessageType })),
       ...allRawMembershipItems.map((message) => ({ ...message, type: 'MembershipItem' as MessageType })),
       ...allRawSponsorshipsGiftPurchaseAnnouncements.map((message) => ({
         ...message,
