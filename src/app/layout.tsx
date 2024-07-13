@@ -1,4 +1,3 @@
-import 'noto-sans-tc/all.css'
 import '~/styles/globals.css'
 
 import { TRPCReactProvider } from '~/trpc/react'

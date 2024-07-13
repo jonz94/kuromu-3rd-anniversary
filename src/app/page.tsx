@@ -5,7 +5,7 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
       <div className="flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-8xl">留言紀錄</h1>
+        <h1 className="text-5xl font-bold tracking-tight sm:text-8xl">留言紀錄</h1>
 
         <LastUpdatedAt />
 
