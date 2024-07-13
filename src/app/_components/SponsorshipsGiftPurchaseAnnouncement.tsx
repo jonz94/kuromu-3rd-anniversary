@@ -15,7 +15,7 @@ export function SponsorshipsGiftPurchaseAnnouncement({
         <p className="text-xl pl-8 my-auto">
           {sponsorshipsGiftPurchaseAnnouncement.headerPrimaryText
             .replace('Gifted', '送出了')
-            .replace('庫洛姆•Kuromu', '個 「庫洛姆•Kuromu」 ')
+            .replace('庫洛姆•Kuromu', '個「庫洛姆•Kuromu」')
             .replace(' memberships', '的會籍')}
         </p>
         {/* eslint-disable-next-line @next/next/no-img-element */}

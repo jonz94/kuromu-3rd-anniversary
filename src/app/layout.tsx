@@ -1,6 +1,5 @@
+import 'noto-sans-tc/all.css'
 import '~/styles/globals.css'
-
-import { GeistSans } from 'geist/font/sans'
 
 import { TRPCReactProvider } from '~/trpc/react'
 
@@ -12,7 +11,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
+    <html lang="en" className="font-sans">
       <body className="bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
