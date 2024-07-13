@@ -1,5 +1,6 @@
 import '~/styles/globals.css'
 
+import { ThemeProvider } from '~/components/ThemeProvider'
 import { TRPCReactProvider } from '~/trpc/react'
 
 export const metadata = {
@@ -10,9 +11,13 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="font-sans">
-      <body className="bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <TRPCReactProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {children}
+          </ThemeProvider>
+        </TRPCReactProvider>
       </body>
     </html>
   )
