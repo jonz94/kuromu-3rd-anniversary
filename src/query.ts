@@ -20,7 +20,12 @@ const rawTextMessageSchema = z.object({
   jsonMessage: z.string(),
 })
 
-export type MessageType = 'TextMessage' | 'PaidMessage' | 'MembershipItem' | 'SponsorshipsGiftPurchaseAnnouncement'
+export type MessageType =
+  | 'TextMessage'
+  | 'PaidMessage'
+  | 'MembershipItem'
+  | 'SponsorshipsGiftPurchaseAnnouncement'
+  | 'SponsorshipsGiftRedemptionAnnouncement'
 
 export type RawTextMessageSchema = z.infer<typeof rawTextMessageSchema>
 export type RawTextMessageSchemaWithMessageType = RawTextMessageSchema & { type: MessageType }
@@ -85,32 +90,59 @@ export type RawSponsorshipsGiftPurchaseAnnouncementSchemaWithMessageType =
 
 const rawSponsorshipsGiftPurchaseAnnouncementListSchema = rawSponsorshipsGiftPurchaseAnnouncementSchema.array()
 
+const rawSponsorshipsGiftRedemptionAnnouncementSchema = z.object({
+  id: z.string(),
+  userId: z.string(),
+  videoId: z.string(),
+  videoOffsetTimeMsec: z.string(),
+  timestampUsec: z.string(),
+  jsonMessage: z.string(),
+})
+
+export type RawSponsorshipsGiftRedemptionAnnouncementSchema = z.infer<
+  typeof rawSponsorshipsGiftRedemptionAnnouncementSchema
+>
+export type RawSponsorshipsGiftRedemptionAnnouncementSchemaWithMessageType =
+  RawSponsorshipsGiftRedemptionAnnouncementSchema & { timestamp: number; type: MessageType }
+
+const rawSponsorshipsGiftRedemptionAnnouncementListSchema = rawSponsorshipsGiftRedemptionAnnouncementSchema.array()
+
 export const fetchMessageData = (channelId: string) => {
   return async () => {
-    const [allRawTextMessages, allRawPaidMessages, allRawMembershipItems, allRawSponsorshipsGiftPurchaseAnnouncements] =
-      await Promise.all([
-        fetch(`/data/${channelId}/raw-text-messages.json`)
-          .then((response) => response.text())
-          .then((content) => rawTextMessageListSchema.parseAsync(JSON.parse(content))),
+    const [
+      allRawTextMessages,
+      allRawPaidMessages,
+      allRawMembershipItems,
+      allRawSponsorshipsGiftPurchaseAnnouncements,
+      allRawSponsorshipsGiftRedemptionAnnouncements,
+    ] = await Promise.all([
+      fetch(`/data/${channelId}/raw-text-messages.json`)
+        .then((response) => response.text())
+        .then((content) => rawTextMessageListSchema.parseAsync(JSON.parse(content))),
 
-        fetch(`/data/${channelId}/raw-paid-messages.json`)
-          .then((response) => response.text())
-          .then((content) => rawPaidMessageListSchema.parseAsync(JSON.parse(content))),
+      fetch(`/data/${channelId}/raw-paid-messages.json`)
+        .then((response) => response.text())
+        .then((content) => rawPaidMessageListSchema.parseAsync(JSON.parse(content))),
 
-        fetch(`/data/${channelId}/raw-membership-items.json`)
-          .then((response) => response.text())
-          .then((content) => rawMembershipItemListSchema.parseAsync(JSON.parse(content))),
+      fetch(`/data/${channelId}/raw-membership-items.json`)
+        .then((response) => response.text())
+        .then((content) => rawMembershipItemListSchema.parseAsync(JSON.parse(content))),
 
-        fetch(`/data/${channelId}/raw-live-chat-sponsorships-gift-purchase-announcement.json`)
-          .then((response) => response.text())
-          .then((content) => rawSponsorshipsGiftPurchaseAnnouncementListSchema.parseAsync(JSON.parse(content))),
-      ])
+      fetch(`/data/${channelId}/raw-live-chat-sponsorships-gift-purchase-announcement.json`)
+        .then((response) => response.text())
+        .then((content) => rawSponsorshipsGiftPurchaseAnnouncementListSchema.parseAsync(JSON.parse(content))),
+
+      fetch(`/data/${channelId}/raw-live-chat-sponsorships-gift-redemption-announcements.json`)
+        .then((response) => response.text())
+        .then((content) => rawSponsorshipsGiftRedemptionAnnouncementListSchema.parseAsync(JSON.parse(content))),
+    ])
 
     const allMessages: (
       | RawPaidMessageSchemaWithMessageType
       | RawTextMessageSchemaWithMessageType
       | RawMembershipItemSchemaWithMessageType
       | RawSponsorshipsGiftPurchaseAnnouncementSchemaWithMessageType
+      | RawSponsorshipsGiftRedemptionAnnouncementSchemaWithMessageType
     )[] = [
       ...allRawTextMessages.map((message) => ({ ...message, type: 'TextMessage' as MessageType })),
       ...allRawPaidMessages.map((message) => ({ ...message, type: 'PaidMessage' as MessageType })),
@@ -119,6 +151,11 @@ export const fetchMessageData = (channelId: string) => {
         ...message,
         timestamp: Number(message.timestampUsec.slice(0, -3)),
         type: 'SponsorshipsGiftPurchaseAnnouncement' as MessageType,
+      })),
+      ...allRawSponsorshipsGiftRedemptionAnnouncements.map((message) => ({
+        ...message,
+        timestamp: Number(message.timestampUsec.slice(0, -3)),
+        type: 'SponsorshipsGiftRedemptionAnnouncement' as MessageType,
       })),
     ]
 

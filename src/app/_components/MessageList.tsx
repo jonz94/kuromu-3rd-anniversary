@@ -4,12 +4,14 @@ import { useQuery } from '@tanstack/react-query'
 import { MembershipItem } from '~/app/_components/MembershipItem'
 import { PaidMessage } from '~/app/_components/PaidMessage'
 import { SponsorshipsGiftPurchaseAnnouncement } from '~/app/_components/SponsorshipsGiftPurchaseAnnouncement'
+import { SponsorshipsGiftRedemptionAnnouncement } from '~/app/_components/SponsorshipsGiftRedemptionAnnouncement'
 import { Text } from '~/app/_components/Text'
 import {
   fetchMessageData,
   type RawMembershipItemSchemaWithMessageType,
   type RawPaidMessageSchemaWithMessageType,
   type RawSponsorshipsGiftPurchaseAnnouncementSchemaWithMessageType,
+  type RawSponsorshipsGiftRedemptionAnnouncementSchemaWithMessageType,
   type RawTextMessageSchemaWithMessageType,
 } from '~/query'
 
@@ -74,6 +76,11 @@ export function MessageList(props: { channelId: string }) {
                       message as RawSponsorshipsGiftPurchaseAnnouncementSchemaWithMessageType
                     }
                   ></SponsorshipsGiftPurchaseAnnouncement>
+                ) : null}
+                {message.type === 'SponsorshipsGiftRedemptionAnnouncement' ? (
+                  <SponsorshipsGiftRedemptionAnnouncement
+                    text={(message as RawSponsorshipsGiftRedemptionAnnouncementSchemaWithMessageType).jsonMessage}
+                  ></SponsorshipsGiftRedemptionAnnouncement>
                 ) : null}
               </td>
             </tr>
