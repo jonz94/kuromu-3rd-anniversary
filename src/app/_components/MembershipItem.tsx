@@ -81,18 +81,17 @@ export function MembershipItem({ membershipItem }: { membershipItem: RawMembersh
     <div className="rounded-sm w-[360px] overflow-hidden">
       <div className="px-4 py-2 min-h-12 flex flex-col items-start justify-center bg-[rgb(10,128,67)]">
         {membershipItem.headerPrimaryText !== 'N/A' ? (
-          <p>
-            {membershipItem.headerPrimaryText
-              .replace('Member for', '已加入會員')
-              .replace('months', '個月')
-              .replace('month', '個月')}
+          <p className="text-xl">
+            {membershipItem.headerPrimaryText.replace('Member for', '已加入會員').replace(/months?/, '個月')}
           </p>
         ) : null}
 
-        <p>{membershipItem.headerSubtext.replace('Welcome to', '歡迎加入').replace('!', '！')}</p>
+        <p className={membershipItem.headerPrimaryText === 'N/A' ? 'text-xl' : 'text-lg text-white/70'}>
+          {membershipItem.headerSubtext.replace('Welcome to', '歡迎加入').replace('!', '！')}
+        </p>
       </div>
       {text ? (
-        <div className="px-4 py-2 bg-[rgb(15,157,88)]">
+        <div className="px-4 py-2 bg-[rgb(15,157,88)] text-xl">
           <p>{text}</p>
         </div>
       ) : null}

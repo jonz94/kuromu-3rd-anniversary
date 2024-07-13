@@ -86,9 +86,9 @@ export function PaidMessage({ paidMessage }: { paidMessage: RawPaidMessageSchema
         color: convertARGB2rgbString(paidMessage.bodyTextColor),
       }}
     >
-      <div className="px-4 py-2 min-h-12 flex items-center">{paidMessage.purchaseAmount}</div>
+      <div className="px-4 py-2 min-h-12 flex items-center text-xl">{paidMessage.purchaseAmount}</div>
       {text ? (
-        <div className="px-4 pb-2">
+        <div className="px-4 pb-2 text-xl">
           <p>{text}</p>
         </div>
       ) : null}
