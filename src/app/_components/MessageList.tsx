@@ -3,11 +3,14 @@
 import { useQuery } from '@tanstack/react-query'
 import { MembershipItem } from '~/app/_components/MembershipItem'
 import { PaidMessage } from '~/app/_components/PaidMessage'
+import { SponsorshipsGiftPurchaseAnnouncement } from '~/app/_components/SponsorshipsGiftPurchaseAnnouncement'
 import { Text } from '~/app/_components/Text'
 import {
   fetchMessageData,
   type RawMembershipItemSchemaWithMessageType,
   type RawPaidMessageSchemaWithMessageType,
+  type RawSponsorshipsGiftPurchaseAnnouncementSchemaWithMessageType,
+  type RawTextMessageSchemaWithMessageType,
 } from '~/query'
 
 export function MessageList(props: { channelId: string }) {
@@ -56,12 +59,21 @@ export function MessageList(props: { channelId: string }) {
                 </a>
               </td>
               <td className="flex col-span-2 items-center">
-                {message.type === 'TextMessage' ? <Text text={message.jsonMessage}></Text> : null}
+                {message.type === 'TextMessage' ? (
+                  <Text text={(message as RawTextMessageSchemaWithMessageType).jsonMessage}></Text>
+                ) : null}
                 {message.type === 'PaidMessage' ? (
                   <PaidMessage paidMessage={message as RawPaidMessageSchemaWithMessageType}></PaidMessage>
                 ) : null}
                 {message.type === 'MembershipItem' ? (
                   <MembershipItem membershipItem={message as RawMembershipItemSchemaWithMessageType}></MembershipItem>
+                ) : null}
+                {message.type === 'SponsorshipsGiftPurchaseAnnouncement' ? (
+                  <SponsorshipsGiftPurchaseAnnouncement
+                    sponsorshipsGiftPurchaseAnnouncement={
+                      message as RawSponsorshipsGiftPurchaseAnnouncementSchemaWithMessageType
+                    }
+                  ></SponsorshipsGiftPurchaseAnnouncement>
                 ) : null}
               </td>
             </tr>

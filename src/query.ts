@@ -20,7 +20,7 @@ const rawTextMessageSchema = z.object({
   jsonMessage: z.string(),
 })
 
-export type MessageType = 'TextMessage' | 'PaidMessage' | 'MembershipItem'
+export type MessageType = 'TextMessage' | 'PaidMessage' | 'MembershipItem' | 'SponsorshipsGiftPurchaseAnnouncement'
 
 export type RawTextMessageSchema = z.infer<typeof rawTextMessageSchema>
 export type RawTextMessageSchemaWithMessageType = RawTextMessageSchema & { type: MessageType }
@@ -68,30 +68,58 @@ const rawMembershipItemListSchema = rawMembershipItemSchema.array()
 
 export type RawMembershipItemListSchema = z.infer<typeof rawMembershipItemListSchema>
 
+const rawSponsorshipsGiftPurchaseAnnouncementSchema = z.object({
+  id: z.string(),
+  userId: z.string(),
+  videoId: z.string(),
+  videoOffsetTimeMsec: z.string(),
+  timestampUsec: z.string(),
+  headerPrimaryText: z.string(),
+})
+
+export type RawSponsorshipsGiftPurchaseAnnouncementSchema = z.infer<
+  typeof rawSponsorshipsGiftPurchaseAnnouncementSchema
+>
+export type RawSponsorshipsGiftPurchaseAnnouncementSchemaWithMessageType =
+  RawSponsorshipsGiftPurchaseAnnouncementSchema & { timestamp: number; type: MessageType }
+
+const rawSponsorshipsGiftPurchaseAnnouncementListSchema = rawSponsorshipsGiftPurchaseAnnouncementSchema.array()
+
 export const fetchMessageData = (channelId: string) => {
   return async () => {
-    const [allRawTextMessages, allRawPaidMessages, allRawMembershipItems] = await Promise.all([
-      fetch(`/data/${channelId}/raw-text-messages.json`)
-        .then((response) => response.text())
-        .then((content) => rawTextMessageListSchema.parseAsync(JSON.parse(content))),
+    const [allRawTextMessages, allRawPaidMessages, allRawMembershipItems, allRawSponsorshipsGiftPurchaseAnnouncements] =
+      await Promise.all([
+        fetch(`/data/${channelId}/raw-text-messages.json`)
+          .then((response) => response.text())
+          .then((content) => rawTextMessageListSchema.parseAsync(JSON.parse(content))),
 
-      fetch(`/data/${channelId}/raw-paid-messages.json`)
-        .then((response) => response.text())
-        .then((content) => rawPaidMessageListSchema.parseAsync(JSON.parse(content))),
+        fetch(`/data/${channelId}/raw-paid-messages.json`)
+          .then((response) => response.text())
+          .then((content) => rawPaidMessageListSchema.parseAsync(JSON.parse(content))),
 
-      fetch(`/data/${channelId}/raw-membership-items.json`)
-        .then((response) => response.text())
-        .then((content) => rawMembershipItemListSchema.parseAsync(JSON.parse(content))),
-    ])
+        fetch(`/data/${channelId}/raw-membership-items.json`)
+          .then((response) => response.text())
+          .then((content) => rawMembershipItemListSchema.parseAsync(JSON.parse(content))),
+
+        fetch(`/data/${channelId}/raw-live-chat-sponsorships-gift-purchase-announcement.json`)
+          .then((response) => response.text())
+          .then((content) => rawSponsorshipsGiftPurchaseAnnouncementListSchema.parseAsync(JSON.parse(content))),
+      ])
 
     const allMessages: (
       | RawPaidMessageSchemaWithMessageType
       | RawTextMessageSchemaWithMessageType
       | RawMembershipItemSchemaWithMessageType
+      | RawSponsorshipsGiftPurchaseAnnouncementSchemaWithMessageType
     )[] = [
       ...allRawTextMessages.map((message) => ({ ...message, type: 'TextMessage' as MessageType })),
       ...allRawPaidMessages.map((message) => ({ ...message, type: 'PaidMessage' as MessageType })),
       ...allRawMembershipItems.map((message) => ({ ...message, type: 'MembershipItem' as MessageType })),
+      ...allRawSponsorshipsGiftPurchaseAnnouncements.map((message) => ({
+        ...message,
+        timestamp: Number(message.timestampUsec.slice(0, -3)),
+        type: 'SponsorshipsGiftPurchaseAnnouncement' as MessageType,
+      })),
     ]
 
     return allMessages.toSorted((a, b) => new Date(a.timestamp).valueOf() - new Date(b.timestamp).valueOf())
