@@ -13,8 +13,6 @@ export default async function Home() {
 
       <LastUpdatedAt />
 
-      <p className="text-xl">(可以使用 Ctrl + F 或 Command + F 啟用搜尋功能)</p>
-
       <ChannelList />
     </main>
   )
