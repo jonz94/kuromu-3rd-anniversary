@@ -45,8 +45,6 @@ function parseSticker(text?: string) {
 export function PaidSticker({ paidSticker }: { paidSticker: RawPaidStickerSchemaWithMessageType }) {
   if (paidSticker.type !== 'PaidSticker') return null
 
-  console.log(paidSticker.jsonSticker)
-
   const image = parseSticker(paidSticker.jsonSticker)
 
   return (
