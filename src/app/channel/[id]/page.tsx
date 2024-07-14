@@ -8,7 +8,7 @@ import { Button } from '~/components/ui/button'
 
 export default function Page({ params }: { params: { id: string } }) {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-12 px-4 py-16">
+    <main className="flex min-h-screen flex-col items-center justify-center gap-12 px-4 pt-24 pb-16 sm:pt-16">
       <div className="absolute top-8 left-8">
         <Button asChild size="icon">
           <Link href="/" prefetch={false}>

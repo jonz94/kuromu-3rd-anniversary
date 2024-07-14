@@ -43,8 +43,8 @@ export function MessageList(props: { channelId: string }) {
       <table className="w-full border-separate border-spacing-2">
         <thead className="text-left text-3xl font-bold">
           <tr>
-            <th>時間</th>
-            <th>原直播網址 (含時間軸)</th>
+            <th className="hidden sm:flex">時間</th>
+            <th className="hidden sm:flex">原直播網址 (含時間軸)</th>
             <th>內容</th>
           </tr>
         </thead>
@@ -52,8 +52,8 @@ export function MessageList(props: { channelId: string }) {
         <tbody>
           {allMessages?.map((message, index) => (
             <tr key={index}>
-              <td className="text-2xl">{new Date(message.timestamp).toLocaleString('zh-Hant-TW')}</td>
-              <td className="text-xl">
+              <td className="text-2xl hidden sm:flex">{new Date(message.timestamp).toLocaleString('zh-Hant-TW')}</td>
+              <td className="text-xl hidden sm:flex">
                 <a
                   href={`https://www.youtube.com/watch?v=${message.videoId}&t=${Math.floor(Number(message.videoOffsetTimeMsec) / 1000)}s`}
                   target="_blank"

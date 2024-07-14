@@ -32,7 +32,7 @@ export function Channel(props: { channelId: string }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`/data/${channel.id}/avatar.jpg`}
-          className="size-16 rounded-full"
+          className="size-16 min-w-16 rounded-full"
           width={160}
           height={160}
           alt={`${channel.name} 的頭像`}
