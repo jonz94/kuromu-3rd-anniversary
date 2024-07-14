@@ -13,7 +13,7 @@ export default async function Home() {
 
       <LastUpdatedAt />
 
-      <div className="w-full max-w-screen-xl grow">
+      <div className="w-full max-w-screen-xl grow flex flex-col">
         <ChannelList />
       </div>
     </main>

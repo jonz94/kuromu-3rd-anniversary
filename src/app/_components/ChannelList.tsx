@@ -8,8 +8,15 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
+import { Skeleton } from '~/components/ui/skeleton'
 import { useSearchTermContext } from '~/context'
 import { type ChannelSchema, type ChannelsSchema, fetchChannelsData } from '~/query'
+
+function random() {
+  return Math.floor(Math.random() * 100) + 2
+}
+
+const skeletons = Array.from(Array(20).keys()).map(() => random())
 
 export function ChannelList() {
   const {
@@ -21,7 +28,30 @@ export function ChannelList() {
     queryFn: fetchChannelsData,
   })
 
-  if (isLoading) return <div className="text-center">資料載入中...</div>
+  if (isLoading) {
+    return (
+      <>
+        <div className="flex gap-4 pb-8">
+          <Button type="button" size="icon" className="size-12 min-w-12">
+            <Search className="size-6" />
+          </Button>
+
+          <Skeleton className="h-12 w-full" />
+        </div>
+
+        <div className="flex flex-col items-center gap-2">
+          {skeletons.map((length, index) => {
+            return (
+              <div key={index} className="flex w-full items-center gap-4">
+                <Skeleton className="h-10 min-w-[5.5rem] rounded-md" />
+                <Skeleton className="h-8 rounded-none" style={{ width: `${length}ch` }} />
+              </div>
+            )
+          })}
+        </div>
+      </>
+    )
+  }
 
   if (error) {
     return (

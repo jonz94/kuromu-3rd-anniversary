@@ -1,6 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
+import { Skeleton } from '~/components/ui/skeleton'
 import { fetchChannelData } from '~/query'
 
 export function Channel(props: { channelId: string }) {
@@ -13,7 +14,14 @@ export function Channel(props: { channelId: string }) {
     queryFn: fetchChannelData(props.channelId),
   })
 
-  if (isLoading) return <div>資料載入中...</div>
+  if (isLoading) {
+    return (
+      <div className="flex gap-4 items-center">
+        <Skeleton className="size-16 min-w-16 rounded-full" />
+        <Skeleton className="h-12 rounded-none w-60" />
+      </div>
+    )
+  }
 
   if (error) {
     return (

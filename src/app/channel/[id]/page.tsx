@@ -15,11 +15,13 @@ export default function Page({ params }: { params: { id: string } }) {
         <ModeToggle></ModeToggle>
       </div>
 
-      <Channel channelId={params.id} />
+      <div className="min-h-16">
+        <Channel channelId={params.id} />
+      </div>
 
       <LastUpdatedAt />
 
-      <div className="w-full max-w-screen-xl grow">
+      <div className="w-full max-w-screen-xl grow flex flex-col">
         <MessageList channelId={params.id} />
       </div>
     </main>
