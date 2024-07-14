@@ -51,10 +51,10 @@ export function MessageList(props: { channelId: string }) {
       <tbody>
         {allMessages?.map((message, index) => (
           <tr key={index}>
-            <td className="text-2xl hidden sm:table-cell">
+            <td className="hidden text-2xl sm:table-cell">
               {new Date(message.timestamp).toLocaleString('zh-Hant-TW')}
             </td>
-            <td className="text-xl hidden sm:table-cell">
+            <td className="hidden text-xl sm:table-cell">
               <a
                 href={`https://www.youtube.com/watch?v=${message.videoId}&t=${Math.floor(Number(message.videoOffsetTimeMsec) / 1000)}s`}
                 target="_blank"
@@ -63,7 +63,7 @@ export function MessageList(props: { channelId: string }) {
                 {`https://www.youtube.com/watch?v=${message.videoId}&t=${Math.floor(Number(message.videoOffsetTimeMsec) / 1000)}s`}
               </a>
             </td>
-            <td className="flex col-span-2 items-center">
+            <td className="col-span-2 flex items-center">
               {message.type === 'TextMessage' ? (
                 <Text text={(message as RawTextMessageSchemaWithMessageType).jsonMessage}></Text>
               ) : null}

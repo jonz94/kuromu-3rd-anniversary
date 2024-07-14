@@ -111,7 +111,7 @@ function ChannelSearch({ channels }: { channels: ChannelsSchema }) {
 
         <Input
           ref={inputRef}
-          className="h-12 text-xl font-bold px-4"
+          className="h-12 px-4 text-xl font-bold"
           type="search"
           placeholder="搜尋名稱..."
           defaultValue={searchTerm}
@@ -188,7 +188,7 @@ function ChannelVirtualList({ channels }: { channels: ChannelsSchema }) {
 
 function ChannelItem({ channel }: { channel: ChannelSchema }) {
   return (
-    <div className="flex gap-4 items-center">
+    <div className="flex items-center gap-4">
       <Button asChild>
         <Link
           href={{
@@ -200,7 +200,7 @@ function ChannelItem({ channel }: { channel: ChannelSchema }) {
         </Link>
       </Button>
 
-      <div className="text-2xl font-bold py-2 truncate">{channel.name}</div>
+      <div className="truncate py-2 text-2xl font-bold">{channel.name}</div>
     </div>
   )
 }

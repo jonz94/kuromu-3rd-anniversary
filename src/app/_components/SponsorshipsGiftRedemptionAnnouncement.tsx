@@ -18,10 +18,10 @@ export function SponsorshipsGiftRedemptionAnnouncement(props: { text: string }) 
   const text = parseText(props.text)
 
   return (
-    <div className="text-2xl text-white/70 italic flex">
+    <div className="flex text-2xl italic text-white/70">
       {text}
       <svg
-        className="inline ml-1.5 relative -top-0.5"
+        className="relative -top-0.5 ml-1.5 inline"
         xmlns="http://www.w3.org/2000/svg"
         height="32"
         viewBox="0 0 24 24"

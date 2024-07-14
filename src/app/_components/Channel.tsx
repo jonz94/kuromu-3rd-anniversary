@@ -16,9 +16,9 @@ export function Channel(props: { channelId: string }) {
 
   if (isLoading) {
     return (
-      <div className="flex gap-4 items-center">
+      <div className="flex items-center gap-4">
         <Skeleton className="size-16 min-w-16 rounded-full" />
-        <Skeleton className="h-12 rounded-none w-60" />
+        <Skeleton className="h-12 w-60 rounded-none" />
       </div>
     )
   }
@@ -35,7 +35,7 @@ export function Channel(props: { channelId: string }) {
   if (!channel) return <div></div>
 
   return (
-    <div className="flex gap-4 items-center">
+    <div className="flex items-center gap-4">
       <span>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -46,7 +46,7 @@ export function Channel(props: { channelId: string }) {
           alt={`${channel.name} 的頭像`}
         />
       </span>
-      <span className="font-bold text-5xl">{channel.name}</span>
+      <span className="text-5xl font-bold">{channel.name}</span>
     </div>
   )
 }

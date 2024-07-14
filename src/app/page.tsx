@@ -5,7 +5,7 @@ import { ModeToggle } from '~/components/ModeToggle'
 export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-12 px-4 py-16">
-      <div className="absolute top-8 right-8">
+      <div className="absolute right-8 top-8">
         <ModeToggle></ModeToggle>
       </div>
 
@@ -13,7 +13,7 @@ export default async function Home() {
 
       <LastUpdatedAt />
 
-      <div className="w-full max-w-screen-xl grow flex flex-col">
+      <div className="flex w-full max-w-screen-xl grow flex-col">
         <ChannelList />
       </div>
     </main>

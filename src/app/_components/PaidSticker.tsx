@@ -36,7 +36,7 @@ function parseSticker(text?: string) {
       src={image.url}
       height={image.height}
       width={image.width}
-      className="size-20 mx-0.5 align-middle inline"
+      className="mx-0.5 inline size-20 align-middle"
       alt="emoji"
     />
   ) : null
@@ -49,7 +49,7 @@ export function PaidSticker({ paidSticker }: { paidSticker: RawPaidStickerSchema
 
   return (
     <div
-      className="px-4 py-2 rounded-xl w-[360px] flex justify-between"
+      className="flex w-[360px] justify-between rounded-xl px-4 py-2"
       style={{
         backgroundColor: convertARGB2rgbString(paidSticker.moneyChipBackgroundColor),
         color: convertARGB2rgbString(paidSticker.moneyChipTextColor),

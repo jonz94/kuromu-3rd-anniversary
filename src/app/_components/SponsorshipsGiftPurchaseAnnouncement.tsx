@@ -10,9 +10,9 @@ export function SponsorshipsGiftPurchaseAnnouncement({
   if (sponsorshipsGiftPurchaseAnnouncement.type !== 'SponsorshipsGiftPurchaseAnnouncement') return null
 
   return (
-    <div className="rounded-sm w-[360px] overflow-hidden">
+    <div className="w-[360px] overflow-hidden rounded-sm">
       <div className="flex bg-[rgb(15,157,88)]">
-        <p className="text-xl pl-8 my-auto">
+        <p className="my-auto pl-8 text-xl">
           {sponsorshipsGiftPurchaseAnnouncement.headerPrimaryText
             .replace('Gifted', '送出了')
             .replace('庫洛姆•Kuromu', '個「庫洛姆•Kuromu」')

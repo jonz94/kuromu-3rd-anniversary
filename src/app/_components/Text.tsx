@@ -54,7 +54,7 @@ function parseText(text?: string) {
               src={maxImage.url}
               height={32}
               width={32}
-              className="size-[32px] mx-0.5 inline align-middle"
+              className="mx-0.5 inline size-[32px] align-middle"
               alt="emoji"
             />
           ) : null

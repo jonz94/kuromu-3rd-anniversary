@@ -61,7 +61,7 @@ function parseText(text?: string) {
               src={maxImage.url}
               height={32}
               width={32}
-              className="size-[32px] mx-0.5 align-middle inline"
+              className="mx-0.5 inline size-[32px] align-middle"
               alt="emoji"
             />
           ) : null
@@ -80,13 +80,13 @@ export function PaidMessage({ paidMessage }: { paidMessage: RawPaidMessageSchema
 
   return (
     <div
-      className="rounded-xl w-[360px]"
+      className="w-[360px] rounded-xl"
       style={{
         backgroundColor: convertARGB2rgbString(paidMessage.bodyBackgroundColor),
         color: convertARGB2rgbString(paidMessage.bodyTextColor),
       }}
     >
-      <div className="px-4 py-2 min-h-12 flex items-center text-xl">{paidMessage.purchaseAmount}</div>
+      <div className="flex min-h-12 items-center px-4 py-2 text-xl">{paidMessage.purchaseAmount}</div>
       {text ? (
         <div className="px-4 pb-2 text-xl">
           <p>{text}</p>
