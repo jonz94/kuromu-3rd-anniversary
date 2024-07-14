@@ -2,11 +2,13 @@
 
 import { useQuery } from '@tanstack/react-query'
 import { useWindowVirtualizer } from '@tanstack/react-virtual'
-import { Search } from 'lucide-react'
+import { Search, X } from 'lucide-react'
 import Link from 'next/link'
-import { useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useEffect, useRef } from 'react'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
+import { useSearchTermContext } from '~/context'
 import { type ChannelSchema, type ChannelsSchema, fetchChannelsData } from '~/query'
 
 export function ChannelList() {
@@ -35,40 +37,83 @@ export function ChannelList() {
 
 function ChannelSearch({ channels }: { channels: ChannelsSchema }) {
   const inputRef = useRef<HTMLInputElement | null>(null)
-  const [query, setQuery] = useState('')
+  const { searchTerm, setSearchTerm } = useSearchTermContext()
+
+  const router = useRouter()
+
+  useEffect(() => {
+    const query = new URL(window.location.toString()).searchParams.get('query')
+
+    setSearchTerm(query ?? '')
+  }, [setSearchTerm])
+
+  function updateSearchTerm(value: string) {
+    setSearchTerm(value)
+
+    if (inputRef.current) {
+      inputRef.current.value = value
+    }
+
+    if (value) {
+      router.push(`/?query=${encodeURIComponent(value)}`)
+    } else {
+      router.push(`/`)
+    }
+  }
+
+  if (!channels?.filter || typeof channels.filter !== 'function') {
+    return
+  }
 
   return (
-    <div className="w-full max-w-screen-xl">
+    <>
       <form
         className="flex gap-4 pb-8"
         onSubmit={(e) => {
           e.preventDefault()
-          setQuery(inputRef.current?.value ?? '')
+          const value = inputRef.current?.value?.trim() ?? ''
+          updateSearchTerm(value)
         }}
       >
+        <Button type="submit" size="icon" className="size-12 min-w-12">
+          <Search className="size-6" />
+        </Button>
+
         <Input
           ref={inputRef}
           className="h-12 text-xl font-bold px-4"
           type="search"
           placeholder="搜尋名稱..."
+          defaultValue={searchTerm}
           onKeyUp={(e) => {
             if (e.code === 'Enter') {
-              setQuery(inputRef.current?.value ?? '')
+              const value = inputRef.current?.value ?? ''
+              updateSearchTerm(value)
             }
           }}
         />
 
-        <Button size="icon" className="size-12 min-w-12">
-          <Search className="size-6" />
-        </Button>
+        {searchTerm ? (
+          <Button
+            type="button"
+            size="icon"
+            variant="destructive"
+            className="size-12 min-w-12"
+            onClick={() => updateSearchTerm('')}
+          >
+            <X className="size-6" />
+          </Button>
+        ) : null}
       </form>
 
       <ChannelVirtualList
         channels={
-          query ? channels.filter((channel) => channel.name.toLowerCase().includes(query.toLowerCase())) : channels
+          searchTerm
+            ? channels.filter((channel) => channel.name.toLowerCase().includes(searchTerm.toLowerCase()))
+            : channels
         }
       ></ChannelVirtualList>
-    </div>
+    </>
   )
 }
 
@@ -115,7 +160,12 @@ function ChannelItem({ channel }: { channel: ChannelSchema }) {
   return (
     <div className="flex gap-4 items-center">
       <Button asChild>
-        <Link href={`/channel/${channel.id}`} prefetch={false}>
+        <Link
+          href={{
+            pathname: `/channel/${channel.id}`,
+          }}
+          prefetch={false}
+        >
           查看留言
         </Link>
       </Button>
