@@ -21,11 +21,11 @@ export function ChannelList() {
     queryFn: fetchChannelsData,
   })
 
-  if (isLoading) return <div>資料載入中...</div>
+  if (isLoading) return <div className="text-center">資料載入中...</div>
 
   if (error) {
     return (
-      <div>
+      <div className="text-center">
         <p>資料載入時發生異常：</p>
         <p>{error.message}</p>
       </div>

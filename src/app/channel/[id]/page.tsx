@@ -19,7 +19,9 @@ export default function Page({ params }: { params: { id: string } }) {
 
       <LastUpdatedAt />
 
-      <MessageList channelId={params.id} />
+      <div className="w-full max-w-screen-xl grow">
+        <MessageList channelId={params.id} />
+      </div>
     </main>
   )
 }
