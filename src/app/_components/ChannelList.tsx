@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useWindowVirtualizer } from '@tanstack/react-virtual'
 import { Search, X } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
@@ -66,28 +66,25 @@ export function ChannelList() {
 }
 
 function ChannelSearch({ channels }: { channels: ChannelsSchema }) {
+  const { setSearchTerm } = useSearchTermContext()
   const inputRef = useRef<HTMLInputElement | null>(null)
-  const { searchTerm, setSearchTerm } = useSearchTermContext()
-
+  const searchParams = useSearchParams()
+  const query = searchParams.get('query') ?? ''
   const router = useRouter()
 
   useEffect(() => {
-    const query = new URL(window.location.toString()).searchParams.get('query')
-
-    setSearchTerm(query ?? '')
-  }, [setSearchTerm])
+    setSearchTerm(query)
+  }, [setSearchTerm, query])
 
   function updateSearchTerm(value: string) {
-    setSearchTerm(value)
-
     if (inputRef.current) {
       inputRef.current.value = value
     }
 
     if (value) {
-      router.push(`/?query=${encodeURIComponent(value)}`)
+      router.push(`/?query=${encodeURIComponent(value)}`, { scroll: false })
     } else {
-      router.push(`/`)
+      router.push(`/`, { scroll: false })
     }
   }
 
@@ -114,7 +111,7 @@ function ChannelSearch({ channels }: { channels: ChannelsSchema }) {
           className="h-12 px-4 text-xl font-bold"
           type="search"
           placeholder="搜尋名稱..."
-          defaultValue={searchTerm}
+          defaultValue={query}
           onKeyUp={(e) => {
             if (e.code === 'Enter') {
               const value = inputRef.current?.value ?? ''
@@ -123,7 +120,7 @@ function ChannelSearch({ channels }: { channels: ChannelsSchema }) {
           }}
         />
 
-        {searchTerm ? (
+        {query ? (
           <Button
             type="button"
             size="icon"
@@ -138,9 +135,7 @@ function ChannelSearch({ channels }: { channels: ChannelsSchema }) {
 
       <ChannelVirtualList
         channels={
-          searchTerm
-            ? channels.filter((channel) => channel.name.toLowerCase().includes(searchTerm.toLowerCase()))
-            : channels
+          query ? channels.filter((channel) => channel.name.toLowerCase().includes(query.toLowerCase())) : channels
         }
       ></ChannelVirtualList>
     </>
