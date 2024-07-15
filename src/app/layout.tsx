@@ -1,7 +1,7 @@
 import '~/styles/globals.css'
 
 import { ThemeProvider } from '~/components/ThemeProvider'
-import { SearchTermContextProvider } from '~/context'
+import { CanNavigateBackContextProvider, SearchTermContextProvider } from '~/context'
 import { TRPCReactProvider } from '~/trpc/react'
 
 export const metadata = {
@@ -16,7 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <TRPCReactProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            <SearchTermContextProvider>{children}</SearchTermContextProvider>
+            <SearchTermContextProvider>
+              <CanNavigateBackContextProvider>{children}</CanNavigateBackContextProvider>
+            </SearchTermContextProvider>
           </ThemeProvider>
         </TRPCReactProvider>
       </body>
