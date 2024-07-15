@@ -17,14 +17,14 @@ import {
   type RawTextMessageSchemaWithMessageType,
 } from '~/query'
 
-export function MessageList(props: { channelId: string }) {
+export function MessageList({ channelId }: { channelId: string }) {
   const {
     data: allMessages,
     error,
     isLoading,
   } = useQuery({
-    queryKey: ['messages', props.channelId],
-    queryFn: fetchMessageData(props.channelId),
+    queryKey: ['messages', channelId],
+    queryFn: fetchMessageData(channelId),
   })
 
   if (isLoading) return <div className="text-center">資料載入中...</div>
