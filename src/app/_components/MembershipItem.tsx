@@ -87,7 +87,10 @@ export function MembershipItem({ membershipItem }: { membershipItem: RawMembersh
         ) : null}
 
         <p className={membershipItem.headerPrimaryText === 'N/A' ? 'text-xl' : 'text-lg text-white/70'}>
-          {membershipItem.headerSubtext.replace('Welcome to', '歡迎加入').replace('!', '！')}
+          {membershipItem.headerSubtext
+            .replace('Welcome to', '歡迎加入')
+            .replace('Upgraded membership to ', '頻道會員等級已升級至')
+            .replace('!', '！')}
         </p>
       </div>
       {text ? (
