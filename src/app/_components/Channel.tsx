@@ -10,7 +10,7 @@ export function Channel(props: { channelId: string }) {
     error,
     isLoading,
   } = useQuery({
-    queryKey: ['channels'],
+    queryKey: ['channels', props.channelId],
     queryFn: fetchChannelData(props.channelId),
   })
 
