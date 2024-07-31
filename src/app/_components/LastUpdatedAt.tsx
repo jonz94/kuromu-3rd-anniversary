@@ -1,3 +1,3 @@
 export function LastUpdatedAt() {
-  return <p className="text-xl">資料更新於 2024 年 7 月 29 日</p>
+  return <p className="text-xl">資料更新於 2024 年 7 月 31 日</p>
 }
