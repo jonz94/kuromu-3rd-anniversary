@@ -43,9 +43,9 @@ export function MessageList({ channelId }: { channelId: string }) {
     <table className="w-full border-separate border-spacing-2">
       <thead className="text-left text-3xl font-bold">
         <tr>
-          <th className="hidden sm:table-cell">時間</th>
+          <th className="hidden sm:table-cell">留言時間</th>
           <th className="hidden sm:table-cell">原直播網址 (含時間軸)</th>
-          <th>內容</th>
+          <th>留言內容</th>
         </tr>
       </thead>
 
@@ -99,7 +99,7 @@ export function MessageList({ channelId }: { channelId: string }) {
                   align="start"
                   className="visible flex w-screen max-w-[100vw] flex-col gap-y-2 sm:invisible sm:w-fit sm:max-w-[calc(100vw-20px)]"
                 >
-                  <div>時間: {timestamp}</div>
+                  <div>留言時間: {timestamp}</div>
                   <div>
                     <div>原直播網址 (含時間軸)</div>
                     <div>
