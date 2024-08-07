@@ -7,6 +7,7 @@ import { PaidSticker } from '~/app/_components/PaidSticker'
 import { SponsorshipsGiftPurchaseAnnouncement } from '~/app/_components/SponsorshipsGiftPurchaseAnnouncement'
 import { SponsorshipsGiftRedemptionAnnouncement } from '~/app/_components/SponsorshipsGiftRedemptionAnnouncement'
 import { Text } from '~/app/_components/Text'
+import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
 import {
   fetchMessageData,
   type RawMembershipItemSchemaWithMessageType,
@@ -49,48 +50,66 @@ export function MessageList({ channelId }: { channelId: string }) {
       </thead>
 
       <tbody>
-        {allMessages?.map((message, index) => (
-          <tr key={index}>
-            <td className="hidden text-2xl sm:table-cell">
-              {new Date(message.timestamp).toLocaleString('zh-Hant-TW')}
-            </td>
-            <td className="hidden text-xl sm:table-cell">
-              <a
-                href={`https://www.youtube.com/watch?v=${message.videoId}&t=${Math.floor(Number(message.videoOffsetTimeMsec) / 1000)}s`}
-                target="_blank"
-                className="underline"
-              >
-                {`https://www.youtube.com/watch?v=${message.videoId}&t=${Math.floor(Number(message.videoOffsetTimeMsec) / 1000)}s`}
-              </a>
-            </td>
-            <td className="col-span-2 flex items-center">
-              {message.type === 'TextMessage' ? (
-                <Text text={(message as RawTextMessageSchemaWithMessageType).jsonMessage}></Text>
-              ) : null}
-              {message.type === 'PaidMessage' ? (
-                <PaidMessage paidMessage={message as RawPaidMessageSchemaWithMessageType}></PaidMessage>
-              ) : null}
-              {message.type === 'PaidSticker' ? (
-                <PaidSticker paidSticker={message as RawPaidStickerSchemaWithMessageType}></PaidSticker>
-              ) : null}
-              {message.type === 'MembershipItem' ? (
-                <MembershipItem membershipItem={message as RawMembershipItemSchemaWithMessageType}></MembershipItem>
-              ) : null}
-              {message.type === 'SponsorshipsGiftPurchaseAnnouncement' ? (
-                <SponsorshipsGiftPurchaseAnnouncement
-                  sponsorshipsGiftPurchaseAnnouncement={
-                    message as RawSponsorshipsGiftPurchaseAnnouncementSchemaWithMessageType
-                  }
-                ></SponsorshipsGiftPurchaseAnnouncement>
-              ) : null}
-              {message.type === 'SponsorshipsGiftRedemptionAnnouncement' ? (
-                <SponsorshipsGiftRedemptionAnnouncement
-                  text={(message as RawSponsorshipsGiftRedemptionAnnouncementSchemaWithMessageType).jsonMessage}
-                ></SponsorshipsGiftRedemptionAnnouncement>
-              ) : null}
-            </td>
-          </tr>
-        ))}
+        {allMessages?.map((message, index) => {
+          const timestamp = new Date(message.timestamp).toLocaleString('zh-Hant-TW')
+          const url = `https://www.youtube.com/watch?v=${message.videoId}&t=${Math.floor(Number(message.videoOffsetTimeMsec) / 1000)}s`
+
+          return (
+            <tr key={index}>
+              <td className="hidden text-2xl sm:table-cell">{timestamp}</td>
+              <td className="hidden text-xl sm:table-cell">
+                <a href={url} target="_blank" className="underline">
+                  {url}
+                </a>
+              </td>
+
+              <Popover>
+                <PopoverTrigger asChild>
+                  <td className="col-span-2 flex cursor-pointer items-center sm:cursor-auto">
+                    {message.type === 'TextMessage' ? (
+                      <Text text={(message as RawTextMessageSchemaWithMessageType).jsonMessage}></Text>
+                    ) : null}
+                    {message.type === 'PaidMessage' ? (
+                      <PaidMessage paidMessage={message as RawPaidMessageSchemaWithMessageType}></PaidMessage>
+                    ) : null}
+                    {message.type === 'PaidSticker' ? (
+                      <PaidSticker paidSticker={message as RawPaidStickerSchemaWithMessageType}></PaidSticker>
+                    ) : null}
+                    {message.type === 'MembershipItem' ? (
+                      <MembershipItem
+                        membershipItem={message as RawMembershipItemSchemaWithMessageType}
+                      ></MembershipItem>
+                    ) : null}
+                    {message.type === 'SponsorshipsGiftPurchaseAnnouncement' ? (
+                      <SponsorshipsGiftPurchaseAnnouncement
+                        sponsorshipsGiftPurchaseAnnouncement={
+                          message as RawSponsorshipsGiftPurchaseAnnouncementSchemaWithMessageType
+                        }
+                      ></SponsorshipsGiftPurchaseAnnouncement>
+                    ) : null}
+                    {message.type === 'SponsorshipsGiftRedemptionAnnouncement' ? (
+                      <SponsorshipsGiftRedemptionAnnouncement
+                        text={(message as RawSponsorshipsGiftRedemptionAnnouncementSchemaWithMessageType).jsonMessage}
+                      ></SponsorshipsGiftRedemptionAnnouncement>
+                    ) : null}
+                  </td>
+                </PopoverTrigger>
+
+                <PopoverContent align="start" className="visible flex w-full flex-col gap-y-2 sm:invisible">
+                  <div>時間: {timestamp}</div>
+                  <div>
+                    <div>原直播網址 (含時間軸)</div>
+                    <div>
+                      <a href={url} target="_blank" className="underline">
+                        {url}
+                      </a>
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </tr>
+          )
+        })}
       </tbody>
     </table>
   )
