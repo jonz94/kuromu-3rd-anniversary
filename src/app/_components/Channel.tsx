@@ -38,14 +38,16 @@ export function Channel(props: { channelId: string; className?: string }) {
   return (
     <div className={cn('flex items-center gap-4', props.className)}>
       <span>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`/data/${channel.id}/avatar.jpg`}
-          className="size-16 min-w-16 rounded-full"
-          width={160}
-          height={160}
-          alt={`${channel.name} 的頭像`}
-        />
+        <a href={`https://www.youtube.com/channel/${channel.id}`} target="_blank">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`/data/${channel.id}/avatar.jpg`}
+            className="size-16 min-w-16 rounded-full"
+            width={160}
+            height={160}
+            alt={`${channel.name} 的頭像`}
+          />
+        </a>
       </span>
       <span className="text-5xl font-bold">{channel.name}</span>
     </div>
