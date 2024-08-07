@@ -95,7 +95,10 @@ export function MessageList({ channelId }: { channelId: string }) {
                   </td>
                 </PopoverTrigger>
 
-                <PopoverContent align="start" className="visible flex w-full flex-col gap-y-2 sm:invisible">
+                <PopoverContent
+                  align="start"
+                  className="visible flex w-screen max-w-[100vw] flex-col gap-y-2 sm:invisible sm:w-fit sm:max-w-[calc(100vw-20px)]"
+                >
                   <div>時間: {timestamp}</div>
                   <div>
                     <div>原直播網址 (含時間軸)</div>
