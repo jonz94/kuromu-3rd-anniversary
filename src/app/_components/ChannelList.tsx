@@ -6,8 +6,10 @@ import { Search, X } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
+import { Channel } from '~/app/_components/Channel'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
+import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
 import { Skeleton } from '~/components/ui/skeleton'
 import { useSearchTermContext } from '~/context'
 import { type ChannelSchema, type ChannelsSchema, fetchChannelsData } from '~/query'
@@ -203,7 +205,15 @@ function ChannelItem({ channel }: { channel: ChannelSchema }) {
         </Link>
       </Button>
 
-      <div className="truncate py-2 text-2xl font-bold">{channel.name}</div>
+      <Popover>
+        <PopoverTrigger asChild>
+          <div className="w-full cursor-pointer truncate py-2 text-2xl font-bold">{channel.name}</div>
+        </PopoverTrigger>
+
+        <PopoverContent align="start" className="w-screen max-w-[100vw] sm:w-fit sm:max-w-[calc(100vw-20px)]">
+          <Channel channelId={channel.id} className="flex-col"></Channel>
+        </PopoverContent>
+      </Popover>
     </div>
   )
 }

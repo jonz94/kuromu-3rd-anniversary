@@ -2,9 +2,10 @@
 
 import { useQuery } from '@tanstack/react-query'
 import { Skeleton } from '~/components/ui/skeleton'
+import { cn } from '~/lib/utils'
 import { fetchChannelData } from '~/query'
 
-export function Channel(props: { channelId: string }) {
+export function Channel(props: { channelId: string; className?: string }) {
   const {
     data: channel,
     error,
@@ -16,7 +17,7 @@ export function Channel(props: { channelId: string }) {
 
   if (isLoading) {
     return (
-      <div className="flex items-center gap-4">
+      <div className={cn('flex items-center gap-4', props.className)}>
         <Skeleton className="size-16 min-w-16 rounded-full" />
         <Skeleton className="h-12 w-60 rounded-none" />
       </div>
@@ -35,7 +36,7 @@ export function Channel(props: { channelId: string }) {
   if (!channel) return <div></div>
 
   return (
-    <div className="flex items-center gap-4">
+    <div className={cn('flex items-center gap-4', props.className)}>
       <span>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
