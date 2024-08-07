@@ -5,7 +5,7 @@ import { useWindowVirtualizer } from '@tanstack/react-virtual'
 import { Search, X } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { Skeleton } from '~/components/ui/skeleton'
@@ -16,9 +16,17 @@ function random() {
   return Math.floor(Math.random() * 100) + 2
 }
 
-const skeletons = Array.from(Array(20).keys()).map(() => random())
-
 export function ChannelList() {
+  const [skeletons, setSkeletons] = useState<number[]>([])
+
+  // NOTE: use `useEffect()` to fix the "server prop did not match client prop" issue
+  // credits: https://stackoverflow.com/a/66374800/9979122
+  useEffect(() => {
+    const initialSkeletions = Array.from(Array(20).keys()).map(() => random())
+
+    setSkeletons(initialSkeletions)
+  }, [])
+
   const {
     data: allChannels,
     error,
