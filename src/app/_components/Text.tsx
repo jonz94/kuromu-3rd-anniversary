@@ -55,9 +55,23 @@ function parseText(text?: string) {
               height={32}
               width={32}
               className="mx-0.5 inline size-[32px] align-middle"
-              alt="emoji"
+              alt=""
             />
           ) : null
+        }
+
+        if (run.text === '□') {
+          return (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={index}
+              src="/kuku-cry.png"
+              height={32}
+              width={32}
+              className="mx-0.5 inline size-[32px] align-middle"
+              alt=""
+            />
+          )
         }
 
         return run.text
