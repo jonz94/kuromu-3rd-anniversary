@@ -20,6 +20,20 @@ const rawTextMessageSchema = z.object({
   jsonMessage: z.string(),
 })
 
+const videoSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  startTimestamp: z.string(),
+  endTimestamp: z.string(),
+  duration: z.number(),
+})
+
+export type VideoSchema = z.infer<typeof videoSchema>
+
+const videosSchema = videoSchema.array()
+
+export type VideosSchema = z.infer<typeof videosSchema>
+
 export type MessageType =
   | 'TextMessage'
   | 'PaidMessage'
@@ -215,4 +229,11 @@ export const fetchPaidMessageData = (channelId: string) => {
 
     return parsedData
   }
+}
+
+export const fetchVideosData = async (): Promise<VideosSchema> => {
+  const content = await fetch(`/data/videos.json`).then((response) => response.text())
+  const parsedData = await videosSchema.parseAsync(JSON.parse(content))
+
+  return parsedData
 }
