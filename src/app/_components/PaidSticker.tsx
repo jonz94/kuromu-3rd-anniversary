@@ -37,7 +37,7 @@ function parseSticker(text?: string) {
       height={image.height}
       width={image.width}
       className="mx-0.5 inline size-20 align-middle"
-      alt="emoji"
+      alt=""
     />
   ) : null
 }

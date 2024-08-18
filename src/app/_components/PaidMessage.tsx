@@ -62,7 +62,7 @@ function parseText(text?: string) {
               height={32}
               width={32}
               className="mx-0.5 inline size-[32px] align-middle"
-              alt="emoji"
+              alt=""
             />
           ) : null
         }
