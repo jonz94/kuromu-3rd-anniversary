@@ -1,6 +1,6 @@
-import { LastUpdatedAt } from '~/app/_components/LastUpdatedAt'
-import { VideoList } from '~/app/_components/VideoList'
 import { Header } from '~/components/Header'
+import { LastUpdatedAt } from '~/components/LastUpdatedAt'
+import { VideoList } from '~/components/VideoList'
 
 export default async function Video() {
   return (

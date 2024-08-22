@@ -1,12 +1,12 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { MembershipItem } from '~/app/_components/MembershipItem'
-import { PaidMessage } from '~/app/_components/PaidMessage'
-import { PaidSticker } from '~/app/_components/PaidSticker'
-import { SponsorshipsGiftPurchaseAnnouncement } from '~/app/_components/SponsorshipsGiftPurchaseAnnouncement'
-import { SponsorshipsGiftRedemptionAnnouncement } from '~/app/_components/SponsorshipsGiftRedemptionAnnouncement'
-import { Text } from '~/app/_components/Text'
+import { MembershipItem } from '~/components/MembershipItem'
+import { PaidMessage } from '~/components/PaidMessage'
+import { PaidSticker } from '~/components/PaidSticker'
+import { SponsorshipsGiftPurchaseAnnouncement } from '~/components/SponsorshipsGiftPurchaseAnnouncement'
+import { SponsorshipsGiftRedemptionAnnouncement } from '~/components/SponsorshipsGiftRedemptionAnnouncement'
+import { Text } from '~/components/Text'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
 import {
   fetchMessageData,

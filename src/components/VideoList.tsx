@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { VideoThumbnail } from '~/app/_components/VideoThumbnail'
+import { VideoThumbnail } from '~/components/VideoThumbnail'
 import { fetchVideosData } from '~/query'
 
 export function VideoList() {

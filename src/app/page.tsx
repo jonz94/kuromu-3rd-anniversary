@@ -1,6 +1,6 @@
-import { ChannelList } from '~/app/_components/ChannelList'
-import { LastUpdatedAt } from '~/app/_components/LastUpdatedAt'
+import { ChannelList } from '~/components/ChannelList'
 import { Header } from '~/components/Header'
+import { LastUpdatedAt } from '~/components/LastUpdatedAt'
 
 export default async function Home() {
   return (

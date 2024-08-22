@@ -1,6 +1,6 @@
-import { Channel } from '~/app/_components/Channel'
-import { LastUpdatedAt } from '~/app/_components/LastUpdatedAt'
-import { MessageList } from '~/app/_components/MessageList'
+import { Channel } from '~/components/Channel'
+import { LastUpdatedAt } from '~/components/LastUpdatedAt'
+import { MessageList } from '~/components/MessageList'
 import { ModeToggle } from '~/components/ModeToggle'
 import { NavigateBack } from './NavigateBack'
 
