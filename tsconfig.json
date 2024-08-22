@@ -16,7 +16,7 @@
     "forceConsistentCasingInFileNames": true,
 
     /* Bundled projects */
-    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "lib": ["DOM", "DOM.Iterable", "ES2022", "ES2023.Array"],
     "noEmit": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
