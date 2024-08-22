@@ -1,29 +1,49 @@
-# Create T3 App
+# Kuromu 3rd anniversary gift
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+A gift to celebrate the 3rd anniversary debut of 庫洛姆•Kuromu [^YouTube] [^Twttier] 🥳
 
-## What's next? How do I make an app with this?
+Link: https://kuromu3.vercel.app/
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## Related Projects
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- Anniversary Video: Coming Soon...
+    - Video Editor: 大紅紅
+    - Participants:
+        - ㄚ軒
+        - 工口工
+        - Lance蘭斯
+        - 咘蕾可
+        - 殞幽
+        - 阿藍
+        - 大紅紅
+        - Miro夜羽
+        - 眉毛
+        - 小阿平
+        - ZONKA
+        - 息吹
+        - 卡米茲
+        - Kris
+        - 静月はねき～✿
+        - Zaky
+        - 狂三
+        - 草苗龜
+        - Abilen
+        - 彭彭
+        - 幽浮
+        - 畢業生
+        - 花心
+        - 御曉靜
+        - 木白
+        - 嘉祐JAYO
+        - 阿鵝
 
--   [Next.js](https://nextjs.org)
--   [NextAuth.js](https://next-auth.js.org)
--   [Prisma](https://prisma.io)
--   [Drizzle](https://orm.drizzle.team)
--   [Tailwind CSS](https://tailwindcss.com)
--   [tRPC](https://trpc.io)
+- [kuromu-3rd-anniversay](https://github.com/jonz94/kuromu-3rd-anniversary)
 
-## Learn More
+    - The frontend website to view the chat data
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+- [kuromu-live-chat-data](https://github.com/jonz94/kuromu-live-chat-data)
 
--   [Documentation](https://create.t3.gg/)
--   [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+    - The backend command line tool to fetch the chat data from YouTube
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+[^YouTube]: https://www.youtube.com/@KuromuOno
+[^Twttier]: https://x.com/@KuromuOno
