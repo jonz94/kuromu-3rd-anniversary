@@ -1,0 +1,20 @@
+.rhap_container {
+  @apply bg-background shadow-none;
+}
+
+.rhap_time,
+.rhap_repeat-button,
+.rhap_main-controls-button,
+.rhap_volume-button {
+  @apply text-foreground;
+}
+
+.rhap_progress-filled,
+.rhap_progress-indicator {
+  @apply bg-primary;
+}
+
+.rhap_volume-bar,
+.rhap_volume-indicator {
+  @apply bg-foreground;
+}
