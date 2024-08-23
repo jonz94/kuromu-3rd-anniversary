@@ -24,17 +24,17 @@ importers:
         specifier: ^0.11.0
         version: 0.11.0(typescript@5.5.4)(zod@3.23.8)
       '@tanstack/react-query':
-        specifier: ^5.52.0
-        version: 5.52.0(react@18.3.1)
+        specifier: ^5.52.1
+        version: 5.52.1(react@18.3.1)
       '@tanstack/react-virtual':
-        specifier: ^3.10.2
-        version: 3.10.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^3.10.4
+        version: 3.10.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@trpc/client':
         specifier: 11.0.0-rc.485
         version: 11.0.0-rc.485(@trpc/server@11.0.0-rc.485)
       '@trpc/react-query':
         specifier: 11.0.0-rc.485
-        version: 11.0.0-rc.485(@tanstack/react-query@5.52.0(react@18.3.1))(@trpc/client@11.0.0-rc.485(@trpc/server@11.0.0-rc.485))(@trpc/server@11.0.0-rc.485)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 11.0.0-rc.485(@tanstack/react-query@5.52.1(react@18.3.1))(@trpc/client@11.0.0-rc.485(@trpc/server@11.0.0-rc.485))(@trpc/server@11.0.0-rc.485)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@trpc/server':
         specifier: 11.0.0-rc.485
         version: 11.0.0-rc.485
@@ -45,8 +45,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       lucide-react:
-        specifier: ^0.429.0
-        version: 0.429.0(react@18.3.1)
+        specifier: ^0.435.0
+        version: 0.435.0(react@18.3.1)
       next:
         specifier: ^14.2.6
         version: 14.2.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -588,19 +588,19 @@ packages:
   '@tanstack/query-core@5.52.0':
     resolution: {integrity: sha512-U1DOEgltjUwalN6uWYTewSnA14b+tE7lSylOiASKCAO61ENJeCq9VVD/TXHA6O5u9+6v5+UgGYBSccTKDoyMqw==}
 
-  '@tanstack/react-query@5.52.0':
-    resolution: {integrity: sha512-T8tLZdPEopSD3A1EBZ/sq7WkI76pKLKKiT82F486K8wf26EPgYCdeiSnJfuayssdQjWwLQMQVl/ROUBNmlWgCQ==}
+  '@tanstack/react-query@5.52.1':
+    resolution: {integrity: sha512-soyn4dNIUZ8US8NaPVXv06gkZFHaZnPfKWPDjRJjFRW3Y7WZ0jx72eT6zhw3VQlkMPysmXye8l35ewPHspKgbQ==}
     peerDependencies:
-      react: ^18.0.0
+      react: ^18 || ^19
 
-  '@tanstack/react-virtual@3.10.2':
-    resolution: {integrity: sha512-RXOj33/xYgylGNczUrufi/ZbpUreBQmlD9ewz1PNZ4NIe6clTMh5NqAL9gXjRBy59UyZSlqo3c1p3EEzEX27oA==}
+  '@tanstack/react-virtual@3.10.4':
+    resolution: {integrity: sha512-Y2y1QJN3e5gNTG4wlZcoW2IAFrVCuho80oyeODKKFVSbAhJAXmkDNH3ZztM6EQij5ueqpqgz5FlsgKP9TGjImA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
 
-  '@tanstack/virtual-core@3.10.2':
-    resolution: {integrity: sha512-nQXJnavN0D5PcKW2XL+w05aO/bxnuBq0+p3X+RG+R+lTHluNSWp5ePNbz0wIfg7U4HPrX/LBE9llMOvS3/6Cuw==}
+  '@tanstack/virtual-core@3.10.4':
+    resolution: {integrity: sha512-yHyli4RHVsI+eJ0RjmOsjA9RpHp3/Zah9t+iRjmFa72dq00TeG/NwuLYuCV6CB4RkWD4i5RD421j1eb6BdKgvQ==}
 
   '@trpc/client@11.0.0-rc.485':
     resolution: {integrity: sha512-Ld1gQjdYyrku0rjP/4QMg/SdsKgujr0P5XNoWkCyPRjdw3PuJbZFebauQPRC17cbbqGcpJrR+T3vnkhjMb1sgw==}
@@ -1539,8 +1539,8 @@ packages:
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
-  lucide-react@0.429.0:
-    resolution: {integrity: sha512-548DahFy7Ey+0OPlOyZ6ipnbGJzewv8gq2DxDrnAzWZ4RN4+3XyIwQXhD4AQvuREFjS1EnbAgOMaYB0VQyaK1g==}
+  lucide-react@0.435.0:
+    resolution: {integrity: sha512-we5GKfzjMDw9m9SsyZJvWim9qaT+Ya5kaRS+OGFqgLqXUrPM1h+7CiMw5pKdEIoaBqfXz2pyv9TASAdpIAJs0Q==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc
 
@@ -1548,8 +1548,8 @@ packages:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
 
-  micromatch@4.0.7:
-    resolution: {integrity: sha512-LPP/3KorzCwBxfeUuZmaR6bG2kdeHSbe0P2tY3FLRU4vYrjYz5hI4QZwV0njUx3jeuKe67YukQ1LSPZBKDqO/Q==}
+  micromatch@4.0.8:
+    resolution: {integrity: sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==}
     engines: {node: '>=8.6'}
 
   minimatch@3.1.2:
@@ -2084,8 +2084,8 @@ packages:
   tsconfig-paths@3.15.0:
     resolution: {integrity: sha512-2Ac2RgzDe/cn48GvOe3M+o82pEFewD3UPbyoUHHdKasHwJKjds4fLXWf/Ux5kATBKN20oaFGu+jbElp1pos0mg==}
 
-  tslib@2.6.3:
-    resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
+  tslib@2.7.0:
+    resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
 
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
@@ -2611,7 +2611,7 @@ snapshots:
   '@swc/helpers@0.5.5':
     dependencies:
       '@swc/counter': 0.1.3
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   '@t3-oss/env-core@0.11.0(typescript@5.5.4)(zod@3.23.8)':
     dependencies:
@@ -2628,26 +2628,26 @@ snapshots:
 
   '@tanstack/query-core@5.52.0': {}
 
-  '@tanstack/react-query@5.52.0(react@18.3.1)':
+  '@tanstack/react-query@5.52.1(react@18.3.1)':
     dependencies:
       '@tanstack/query-core': 5.52.0
       react: 18.3.1
 
-  '@tanstack/react-virtual@3.10.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@tanstack/react-virtual@3.10.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@tanstack/virtual-core': 3.10.2
+      '@tanstack/virtual-core': 3.10.4
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@tanstack/virtual-core@3.10.2': {}
+  '@tanstack/virtual-core@3.10.4': {}
 
   '@trpc/client@11.0.0-rc.485(@trpc/server@11.0.0-rc.485)':
     dependencies:
       '@trpc/server': 11.0.0-rc.485
 
-  '@trpc/react-query@11.0.0-rc.485(@tanstack/react-query@5.52.0(react@18.3.1))(@trpc/client@11.0.0-rc.485(@trpc/server@11.0.0-rc.485))(@trpc/server@11.0.0-rc.485)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@trpc/react-query@11.0.0-rc.485(@tanstack/react-query@5.52.1(react@18.3.1))(@trpc/client@11.0.0-rc.485(@trpc/server@11.0.0-rc.485))(@trpc/server@11.0.0-rc.485)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@tanstack/react-query': 5.52.0(react@18.3.1)
+      '@tanstack/react-query': 5.52.1(react@18.3.1)
       '@trpc/client': 11.0.0-rc.485(@trpc/server@11.0.0-rc.485)
       '@trpc/server': 11.0.0-rc.485
       react: 18.3.1
@@ -2840,7 +2840,7 @@ snapshots:
 
   aria-hidden@1.2.4:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   aria-query@5.1.3:
     dependencies:
@@ -3432,7 +3432,7 @@ snapshots:
       '@nodelib/fs.walk': 1.2.8
       glob-parent: 5.1.2
       merge2: 1.4.1
-      micromatch: 4.0.7
+      micromatch: 4.0.8
 
   fast-json-stable-stringify@2.1.0: {}
 
@@ -3815,13 +3815,13 @@ snapshots:
 
   lru-cache@10.4.3: {}
 
-  lucide-react@0.429.0(react@18.3.1):
+  lucide-react@0.435.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 
   merge2@1.4.1: {}
 
-  micromatch@4.0.7:
+  micromatch@4.0.8:
     dependencies:
       braces: 3.0.3
       picomatch: 2.3.1
@@ -4066,7 +4066,7 @@ snapshots:
     dependencies:
       react: 18.3.1
       react-style-singleton: 2.2.1(@types/react@18.3.4)(react@18.3.1)
-      tslib: 2.6.3
+      tslib: 2.7.0
     optionalDependencies:
       '@types/react': 18.3.4
 
@@ -4075,7 +4075,7 @@ snapshots:
       react: 18.3.1
       react-remove-scroll-bar: 2.3.6(@types/react@18.3.4)(react@18.3.1)
       react-style-singleton: 2.2.1(@types/react@18.3.4)(react@18.3.1)
-      tslib: 2.6.3
+      tslib: 2.7.0
       use-callback-ref: 1.3.2(@types/react@18.3.4)(react@18.3.1)
       use-sidecar: 1.1.2(@types/react@18.3.4)(react@18.3.1)
     optionalDependencies:
@@ -4086,7 +4086,7 @@ snapshots:
       get-nonce: 1.0.1
       invariant: 2.2.4
       react: 18.3.1
-      tslib: 2.6.3
+      tslib: 2.7.0
     optionalDependencies:
       '@types/react': 18.3.4
 
@@ -4320,7 +4320,7 @@ snapshots:
   synckit@0.9.1:
     dependencies:
       '@pkgr/core': 0.1.1
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   tailwind-merge@2.5.2: {}
 
@@ -4340,7 +4340,7 @@ snapshots:
       is-glob: 4.0.3
       jiti: 1.21.6
       lilconfig: 2.1.0
-      micromatch: 4.0.7
+      micromatch: 4.0.8
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.1
@@ -4384,7 +4384,7 @@ snapshots:
       minimist: 1.2.8
       strip-bom: 3.0.0
 
-  tslib@2.6.3: {}
+  tslib@2.7.0: {}
 
   type-check@0.4.0:
     dependencies:
@@ -4442,7 +4442,7 @@ snapshots:
   use-callback-ref@1.3.2(@types/react@18.3.4)(react@18.3.1):
     dependencies:
       react: 18.3.1
-      tslib: 2.6.3
+      tslib: 2.7.0
     optionalDependencies:
       '@types/react': 18.3.4
 
@@ -4450,7 +4450,7 @@ snapshots:
     dependencies:
       detect-node-es: 1.1.0
       react: 18.3.1
-      tslib: 2.6.3
+      tslib: 2.7.0
     optionalDependencies:
       '@types/react': 18.3.4
 
