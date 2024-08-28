@@ -7,7 +7,7 @@ import { TRPCReactProvider } from '~/trpc/react'
 export const metadata = {
   title: '庫洛姆三週年驚喜',
   description: 'A gift to celebrate the 3rd anniversary debut of 庫洛姆•Kuromu',
-  icons: [{ rel: 'icon', url: '/favicon.ico' }],
+  icons: [{ rel: 'icon', url: '/logo.png' }],
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

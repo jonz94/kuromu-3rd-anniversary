@@ -1,6 +1,6 @@
 'use client'
 
-import { Gift, Menu } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ModeToggle } from '~/components/ModeToggle'
@@ -20,7 +20,8 @@ export function Header() {
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:px-6">
       <nav className="hidden w-full flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
         <Link href="#" className="flex items-center gap-2 text-lg font-semibold md:text-base">
-          <Gift className="size-6" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="" className="size-6" />
           <span className="sr-only">K3</span>
         </Link>
 
@@ -53,7 +54,8 @@ export function Header() {
         <SheetContent side="right">
           <nav className="flex h-full flex-col gap-6 text-lg font-medium">
             <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
-              <Gift className="size-6" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.png" alt="" className="size-6" />
               <span className="sr-only">K3</span>
             </Link>
 
