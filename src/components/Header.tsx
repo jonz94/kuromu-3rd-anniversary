@@ -10,7 +10,7 @@ import { cn } from '~/lib/utils'
 
 const links = [
   { name: '留言紀錄', href: '/' },
-  { name: '直播紀錄', href: '/video' },
+  // { name: '直播紀錄', href: '/video' },
 ]
 
 export function Header() {
