@@ -128,6 +128,10 @@ function ChannelSearch({ channels }: { channels: ChannelsSchema }) {
               updateSearchTerm(value)
             }
           }}
+          onCompositionEnd={() => {
+            const value = inputRef.current?.value ?? ''
+            updateSearchTerm(value)
+          }}
         />
 
         {query ? (
