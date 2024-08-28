@@ -9,7 +9,7 @@ import { Sheet, SheetContent, SheetTrigger } from '~/components/ui/sheet'
 import { cn } from '~/lib/utils'
 
 const links = [
-  { name: '留言紀錄', href: '/' },
+  { name: '庫庫台留言紀錄查詢', href: '/' },
   // { name: '直播紀錄', href: '/video' },
 ]
 
