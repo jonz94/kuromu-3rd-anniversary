@@ -22,7 +22,7 @@ export function Header() {
         <Link href="#" className="flex items-center gap-2 text-lg font-semibold md:text-base">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="" className="size-6" />
-          <span className="sr-only">K3</span>
+          <span className="sr-only">庫</span>
         </Link>
 
         {links.map((link, index) => (
@@ -56,7 +56,7 @@ export function Header() {
             <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/logo.png" alt="" className="size-6" />
-              <span className="sr-only">K3</span>
+              <span className="sr-only">庫</span>
             </Link>
 
             {links.map((link, index) => (
