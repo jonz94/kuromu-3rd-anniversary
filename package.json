@@ -1,7 +1,11 @@
 {
-  "name": "kuromu-t3",
-  "version": "0.1.0",
+  "name": "kuromu-3rd-anniversary",
+  "version": "1.0.0",
   "private": true,
+  "author": {
+    "name": "jonz94",
+    "email": "jody16888@gmail.com"
+  },
   "type": "module",
   "scripts": {
     "build": "next build",
