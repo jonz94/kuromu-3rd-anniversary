@@ -2,11 +2,11 @@
 
 A gift to celebrate the 3rd anniversary debut of 庫洛姆•Kuromu [^YouTube] [^Twttier] 🥳
 
-Link: https://kuromu3.vercel.app/
+Link: https://kuromu-3rd-anniversary.vercel.app/
 
 ## Related Projects
 
-- Anniversary Video: Coming Soon...
+- Anniversary Video: https://www.youtube.com/watch?v=9qZbb_xFqTE
     - Video Editor: 大紅紅
     - Participants:
         - ㄚ軒
