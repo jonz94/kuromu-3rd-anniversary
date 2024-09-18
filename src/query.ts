@@ -237,3 +237,24 @@ export const fetchVideosData = async (): Promise<VideosSchema> => {
 
   return parsedData
 }
+
+const countSchema = z.object({
+  videosCountResult: z.number(),
+  usersCountResult: z.number(),
+  rawTextMessagesCountResult: z.number(),
+  rawPaidMessagesCountResult: z.number(),
+  rawPaidStickersCountResult: z.number(),
+  rawMembershipItemsCountResult: z.number(),
+  rawLiveChatSponsorshipsGiftPurchaseAnnouncementsCountResult: z.number(),
+  rawLiveChatSponsorshipsGiftRedemptionAnnouncementsCountResult: z.number(),
+  timestamp: z.string().datetime(),
+})
+
+export type CountSchema = z.infer<typeof countSchema>
+
+export const fetchLastUpdatedAt = async () => {
+  const content = await fetch(`/data/count.json`).then((response) => response.text())
+  const parsedData = await countSchema.parseAsync(JSON.parse(content))
+
+  return new Date(parsedData.timestamp)
+}
