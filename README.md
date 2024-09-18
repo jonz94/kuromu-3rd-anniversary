@@ -41,9 +41,13 @@ Link: https://kuromu-3rd-anniversary.vercel.app/
 
     - The frontend website to view the chat data
 
-- [kuromu-live-chat-data](https://github.com/jonz94/kuromu-live-chat-data)
+- [youtube-live-chat-data](https://github.com/jonz94/youtube-live-chat-data)
 
-    - The backend command line tool to fetch the chat data from YouTube
+    - The CLI tool that uses [YouTube.js](https://github.com/LuanRT/YouTube.js) to fetch the chat data from YouTube
+
+- [YouTube.js](https://github.com/LuanRT/YouTube.js)
+
+    - A wrapper around YouTube's internal API — reverse engineering InnerTube
 
 [^YouTube]: https://www.youtube.com/@KuromuOno
 [^Twttier]: https://x.com/@KuromuOno
