@@ -30,14 +30,14 @@ importers:
         specifier: ^3.10.8
         version: 3.10.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@trpc/client':
-        specifier: 11.0.0-rc.544
-        version: 11.0.0-rc.544(@trpc/server@11.0.0-rc.544)
+        specifier: ^11.0.0-rc.553
+        version: 11.0.0-rc.553(@trpc/server@11.0.0-rc.553)
       '@trpc/react-query':
-        specifier: 11.0.0-rc.544
-        version: 11.0.0-rc.544(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.544(@trpc/server@11.0.0-rc.544))(@trpc/server@11.0.0-rc.544)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^11.0.0-rc.553
+        version: 11.0.0-rc.553(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.553(@trpc/server@11.0.0-rc.553))(@trpc/server@11.0.0-rc.553)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@trpc/server':
-        specifier: 11.0.0-rc.544
-        version: 11.0.0-rc.544
+        specifier: ^11.0.0-rc.553
+        version: 11.0.0-rc.553
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -618,22 +618,22 @@ packages:
   '@tanstack/virtual-core@3.10.8':
     resolution: {integrity: sha512-PBu00mtt95jbKFi6Llk9aik8bnR3tR/oQP1o3TSi+iG//+Q2RTIzCEgKkHG8BB86kxMNW6O8wku+Lmi+QFR6jA==}
 
-  '@trpc/client@11.0.0-rc.544':
-    resolution: {integrity: sha512-VympvY3/j597XUNEm8ywcH9Q78rC8f7qvLRpfU6u7Bjm7YgWLNaWlBYLpnOjhej0gXjFQjRLsnF1Ffek8KDtZg==}
+  '@trpc/client@11.0.0-rc.553':
+    resolution: {integrity: sha512-ICgziilbuAslRgHIVJZ162KaHQRpHXA1C1LPRsNpxPa9aStPF7eThAjn4V3JmDyJsuDLQgAmqLVRImlLPMYR5Q==}
     peerDependencies:
-      '@trpc/server': 11.0.0-rc.544+f8e8d1715
+      '@trpc/server': 11.0.0-rc.553+9b629cc67
 
-  '@trpc/react-query@11.0.0-rc.544':
-    resolution: {integrity: sha512-lieAIbIdbwWsQcZuyUUzIGMB+ouMfkiPoK/H7N864eftiAmZgIuvtaarnO/7wTtLGsJoMOTzTJLE503UvEu0FA==}
+  '@trpc/react-query@11.0.0-rc.553':
+    resolution: {integrity: sha512-m88HBhpfIDJccJCXycHtkGS82RG2TVPsZUFIWswR8m6ip5eFNmqWASanu7DiiFbY6sufLT1S8ee28towrPUgoA==}
     peerDependencies:
       '@tanstack/react-query': ^5.54.1
-      '@trpc/client': 11.0.0-rc.544+f8e8d1715
-      '@trpc/server': 11.0.0-rc.544+f8e8d1715
+      '@trpc/client': 11.0.0-rc.553+9b629cc67
+      '@trpc/server': 11.0.0-rc.553+9b629cc67
       react: '>=18.2.0'
       react-dom: '>=18.2.0'
 
-  '@trpc/server@11.0.0-rc.544':
-    resolution: {integrity: sha512-Hv7w6PV9MQgD+TzX1LI1P1E2siweQaf4fS/xW+b6NCC15REgcYuWNPu69YFFpwcdkl3PuAkh+DL/0NPUpHdiHg==}
+  '@trpc/server@11.0.0-rc.553':
+    resolution: {integrity: sha512-pYUhxV3QU834jP1ugJk1uhtPwwaY1ymIuupb4DiWOhNCl68syuXPlUdD8IYsYKd3BjLkmnjlsOUMoyd/aoOF/Q==}
 
   '@types/eslint@8.56.12':
     resolution: {integrity: sha512-03ruubjWyOHlmljCVoxSuNDdmfZDzsrrz0P2LeJsOXr+ZwFQ+0yQIwNCwt/GYhV7Z31fgtXJTAEs+FYlEL851g==}
@@ -1834,8 +1834,8 @@ packages:
     resolution: {integrity: sha512-fmfw4XgoDke3kdI6h4xcUz1dG8uaiv5q9gcEwLS4Pnth2kxT+GZ7YehS1JTMGBQmtV7Y4GFGbs2re2NqhdozUg==}
     engines: {node: '>= 0.4'}
 
-  regexp.prototype.flags@1.5.2:
-    resolution: {integrity: sha512-NcDiDkTLuPR+++OCKB0nWafEmhg/Da8aUPLPMQbK+bxKKCm1/S5he+AqYa4PlMCVBalb4/yxIRub6qkEx5yJbw==}
+  regexp.prototype.flags@1.5.3:
+    resolution: {integrity: sha512-vqlC04+RQoFalODCbCumG2xIOvapzVMHwsyIGM/SIE8fRhFFsXeH8/QQ+s0T0kDAhKc4k30s73/0ydkHQz6HlQ==}
     engines: {node: '>= 0.4'}
 
   resolve-from@4.0.0:
@@ -2624,19 +2624,19 @@ snapshots:
 
   '@tanstack/virtual-core@3.10.8': {}
 
-  '@trpc/client@11.0.0-rc.544(@trpc/server@11.0.0-rc.544)':
+  '@trpc/client@11.0.0-rc.553(@trpc/server@11.0.0-rc.553)':
     dependencies:
-      '@trpc/server': 11.0.0-rc.544
+      '@trpc/server': 11.0.0-rc.553
 
-  '@trpc/react-query@11.0.0-rc.544(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.544(@trpc/server@11.0.0-rc.544))(@trpc/server@11.0.0-rc.544)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@trpc/react-query@11.0.0-rc.553(@tanstack/react-query@5.59.0(react@18.3.1))(@trpc/client@11.0.0-rc.553(@trpc/server@11.0.0-rc.553))(@trpc/server@11.0.0-rc.553)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@tanstack/react-query': 5.59.0(react@18.3.1)
-      '@trpc/client': 11.0.0-rc.544(@trpc/server@11.0.0-rc.544)
-      '@trpc/server': 11.0.0-rc.544
+      '@trpc/client': 11.0.0-rc.553(@trpc/server@11.0.0-rc.553)
+      '@trpc/server': 11.0.0-rc.553
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@trpc/server@11.0.0-rc.544': {}
+  '@trpc/server@11.0.0-rc.553': {}
 
   '@types/eslint@8.56.12':
     dependencies:
@@ -2993,7 +2993,7 @@ snapshots:
       object-is: 1.1.6
       object-keys: 1.1.1
       object.assign: 4.1.5
-      regexp.prototype.flags: 1.5.2
+      regexp.prototype.flags: 1.5.3
       side-channel: 1.0.6
       which-boxed-primitive: 1.0.2
       which-collection: 1.0.2
@@ -3082,7 +3082,7 @@ snapshots:
       object-inspect: 1.13.2
       object-keys: 1.1.1
       object.assign: 4.1.5
-      regexp.prototype.flags: 1.5.2
+      regexp.prototype.flags: 1.5.3
       safe-array-concat: 1.1.2
       safe-regex-test: 1.0.3
       string.prototype.trim: 1.2.9
@@ -4035,7 +4035,7 @@ snapshots:
       globalthis: 1.0.4
       which-builtin-type: 1.1.4
 
-  regexp.prototype.flags@1.5.2:
+  regexp.prototype.flags@1.5.3:
     dependencies:
       call-bind: 1.0.7
       define-properties: 1.2.1
@@ -4173,7 +4173,7 @@ snapshots:
       gopd: 1.0.1
       has-symbols: 1.0.3
       internal-slot: 1.0.7
-      regexp.prototype.flags: 1.5.2
+      regexp.prototype.flags: 1.5.3
       set-function-name: 2.0.2
       side-channel: 1.0.6
 
