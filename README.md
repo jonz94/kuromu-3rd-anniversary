@@ -1,6 +1,6 @@
 # Kuromu 3rd anniversary gift
 
-A gift to celebrate the 3rd anniversary debut of 庫洛姆•Kuromu [^YouTube] [^Twttier] 🥳
+A gift to celebrate the 3rd anniversary debut of 庫洛姆•Kuromu [^YouTube] [^Twitter] 🥳
 
 Link: https://kuromu-3rd-anniversary.vercel.app/
 
@@ -50,4 +50,4 @@ Link: https://kuromu-3rd-anniversary.vercel.app/
     - A wrapper around YouTube's internal API — reverse engineering InnerTube
 
 [^YouTube]: https://www.youtube.com/@KuromuOno
-[^Twttier]: https://x.com/@KuromuOno
+[^Twitter]: https://x.com/@KuromuOno
