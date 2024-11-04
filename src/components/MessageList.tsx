@@ -58,7 +58,7 @@ export function MessageList({ channelId }: { channelId: string }) {
             <tr key={index}>
               <td className="hidden text-2xl sm:table-cell">{timestamp}</td>
               <td className="hidden text-xl sm:table-cell">
-                <a href={url} target="_blank" className="underline">
+                <a href={url} target="_blank" className="underline" rel="noopener noreferrer">
                   {url}
                 </a>
               </td>
@@ -103,7 +103,7 @@ export function MessageList({ channelId }: { channelId: string }) {
                   <div>
                     <div>原直播網址 (含時間軸)</div>
                     <div>
-                      <a href={url} target="_blank" className="underline">
+                      <a href={url} target="_blank" className="underline" rel="noopener noreferrer">
                         {url}
                       </a>
                     </div>

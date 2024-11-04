@@ -38,7 +38,7 @@ export function Channel(props: { channelId: string; className?: string }) {
   return (
     <div className={cn('flex items-center gap-4', props.className)}>
       <span>
-        <a href={`https://www.youtube.com/channel/${channel.id}`} target="_blank">
+        <a href={`https://www.youtube.com/channel/${channel.id}`} target="_blank" rel="noopener noreferrer">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={`/data/${channel.id}/avatar.jpg`}
