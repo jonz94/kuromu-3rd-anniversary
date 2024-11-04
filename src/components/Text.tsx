@@ -15,11 +15,33 @@ interface Emoji {
 interface Run {
   text: string
   emoji?: Emoji
+  endpoint?: {
+    payload?: {
+      url?: string
+    }
+  }
 }
 
 export interface TextJsonMessage {
   runs: Run[]
   text: string
+}
+
+function calculateRedirectUrlIfNeeded(originalUrl: string) {
+  if (!originalUrl.startsWith('https://www.youtube.com/redirect')) {
+    return originalUrl
+  }
+
+  try {
+    const url = new URL(originalUrl)
+
+    return url.searchParams.get('q')
+  } catch (error) {
+    console.error(`error when parsing ${originalUrl}`)
+    console.error(error)
+
+    return null
+  }
 }
 
 function findMaxImage(images: Image[]) {
@@ -71,6 +93,20 @@ function parseText(text?: string) {
               className="mx-0.5 inline size-[32px] align-middle"
               alt=""
             />
+          )
+        }
+
+        if (run?.endpoint?.payload?.url) {
+          const url = calculateRedirectUrlIfNeeded(run.endpoint.payload.url)
+
+          if (!url) {
+            return run.text
+          }
+
+          return (
+            <a href={url} key={index} target="_blank" rel="noopener noreferrer" className="underline">
+              {url}
+            </a>
           )
         }
 
