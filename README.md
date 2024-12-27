@@ -41,9 +41,9 @@ Link: https://kuromu-3rd-anniversary.vercel.app/
 
     - The frontend website to view the chat data
 
-- [youtube-live-chat-data](https://github.com/jonz94/youtube-live-chat-data)
+- [youtube-live-chat-data-cli](https://github.com/jonz94/youtube-live-chat-data-cli)
 
-    - The CLI tool that uses [YouTube.js](https://github.com/LuanRT/YouTube.js) to fetch the chat data from YouTube
+    - A CLI tool that uses [YouTube.js](https://github.com/LuanRT/YouTube.js) to fetch chat data from YouTube
 
 - [YouTube.js](https://github.com/LuanRT/YouTube.js)
 
