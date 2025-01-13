@@ -77,7 +77,7 @@ export function ChannelList() {
 
 function ChannelSearch({ channels }: { channels: ChannelsSchema }) {
   const { setSearchTerm } = useSearchTermContext()
-  const inputRef = useRef<HTMLInputElement | null>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
   const searchParams = useSearchParams()
   const query = searchParams.get('query') ?? ''
   const router = useRouter()
@@ -157,7 +157,7 @@ function ChannelSearch({ channels }: { channels: ChannelsSchema }) {
 }
 
 function ChannelVirtualList({ channels }: { channels: ChannelsSchema }) {
-  const containerRef = useRef<HTMLDivElement | null>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const virtualizer = useWindowVirtualizer({
     count: channels.length,
