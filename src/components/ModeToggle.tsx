@@ -19,10 +19,10 @@ export function ModeToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem className="text-lg" onClick={() => setTheme('light')}>
-          亮色主題
+          淺色模式
         </DropdownMenuItem>
         <DropdownMenuItem className="text-lg" onClick={() => setTheme('dark')}>
-          深色主題
+          深色模式
         </DropdownMenuItem>
         <DropdownMenuItem className="text-lg" onClick={() => setTheme('system')}>
           系統預設
